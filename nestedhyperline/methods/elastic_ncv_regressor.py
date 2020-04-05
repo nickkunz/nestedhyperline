@@ -35,7 +35,7 @@ def elastic_ncv_regressor(
     params = net_params()
     
     ## nested cross-valid bayesian hyper-param optimization
-    ncv_results = ncv_regressor(
+    ncv_results = ncv_optimizer(
         
         ## main func args
         data = data,
