@@ -15,7 +15,7 @@ from sklearn import metrics
 
 ## internal
 from nestedhyperline.argument_quality import ArgumentQuality
-from nestedhyperline.method_select import reg_select
+from nestedhyperline.regressor_select import reg_select
 from nestedhyperline.results import RegressResults
 
 ## nested cross-validation and bayesian hyper-param optimization
@@ -29,24 +29,22 @@ def ncv_optimizer(
     ):
     
     """
-    main underlying function, designed for rapid prototyping, quickly obtain
+    main underlying function, designed for rapid prototyping, quickly obtains 
     prediction results by compromising implementation details and flexibility
     
-    can be applied to regression, multi-class classification, and binary
-    classification problems, unifies three important supervised learning
-    techniques for structured data:
+    applicable only to linear regression problems, unifies three important 
+    supervised learning techniques for structured data:
     
     1) nested k-fold cross validation (minimize bias)
     2) bayesian optimization (efficient hyper-parameter tuning)
-    3) gradient boosting (flexible and extensive prediction)
+    3) linear regularization (reduce model complexity)
 
     bayesian hyper-parameter optimization is conducted utilizing tree prezen
-    estimation, gradient boosting is conducted utilizing user specified methods
+    estimation, linear regularization is conducted utilizing specified method
     
-    returns custom object depending on the type of prediction
-    - regressor: root mean squared error (or other regression metric)
-    - classifier: accuracy, prec-recall-f1-support, confusion matrix, roc auc
-    - all cases: feature importance plot, hyperopt trials object
+    returns custom regression object
+    - root mean squared error (or other specified regression metric)
+    - list of root mean squared errors on outer-folds
     """
     
     ## suppress warning messages
