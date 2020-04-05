@@ -11,4 +11,3 @@ from .regressor_select import *
 from .regressors.ridge_ncv_regressor import *
 from .regressors.lasso_ncv_regressor import *
 from .regressors.elastic_ncv_regressor import *
-from .reg_params import *
