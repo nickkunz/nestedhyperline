@@ -3,7 +3,7 @@ import random as rd
 from sklearn.linear_model import Lasso
 from nestedhyperline.reg_params import reg_params
 from nestedhyperline.argument_quality import ArgumentQuality
-from nestedhyperline.ncv_regressor import ncv_regressor
+from nestedhyperline.ncv_optimizer import ncv_optimizer
 
 ## lasso regression
 def lasso_ncv_regressor(
