@@ -15,7 +15,7 @@ from sklearn import metrics
 
 ## internal
 from nestedhyperline.argument_quality import ArgumentQuality
-from nestedhyperline.method_select import method_select
+from nestedhyperline.method_select import reg_select
 
 ## nested cross-validation and bayesian hyper-param optimization
 def ncv_optimizer(
