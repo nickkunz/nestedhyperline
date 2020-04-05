@@ -27,7 +27,7 @@ setup(
     ],
     packages = [
         'nestedhyperline',
-        'nestedhyperline.methods',
+        'nestedhyperline.regressors',
     ],
     include_package_data = True,
     install_requires = [
