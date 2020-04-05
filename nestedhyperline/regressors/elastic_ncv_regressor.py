@@ -25,7 +25,7 @@ def elastic_ncv_regressor(
     bayesian hyper-parameter optimization is conducted utilizing tree prezen
     estimation, linear regularization is conducted utilizing l2 and l1
     
-    returns custom regression object
+    returns custom regression object:
     - root mean squared error (or other specified regression metric)
     - list of root mean squared errors on outer-folds
     
