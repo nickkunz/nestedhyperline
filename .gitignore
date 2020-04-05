@@ -1,0 +1,8 @@
+build/
+dist/
+nestedhyperline.egg-info/
+.eggs
+.git
+.Rproj.user
+.Rhistory
+nestedhyperline.Rproj
