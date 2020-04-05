@@ -9,6 +9,6 @@ from nestedhyperline.argument_quality import *
 from nestedhyperline.regressor_select import *
 
 from nestedhyperline.regressors.ridge_ncv_regressor import *
-from nestedhyperline. regressors.lasso_ncv_regressor import *
+from nestedhyperline.regressors.lasso_ncv_regressor import *
 from nestedhyperline.regressors.elastic_ncv_regressor import *
 from nestedhyperline.reg_params import *
