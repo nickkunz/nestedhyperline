@@ -35,7 +35,7 @@ setup(
         'pandas',
         'matplotlib',
         'sklearn',
-        'hyperopt',
+        'hyperopt'
     ],
     tests_require = ['nose'],
     test_suite = 'nose.collector'
