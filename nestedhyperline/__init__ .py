@@ -3,11 +3,12 @@ Nested Cross-Validation for Bayesian Hyper-Parameter Optimized Linear Regulariza
 https://github.com/nickkunz/nestedhyperline
 """
 
-from .results import *
-from .ncv_optimizer import *
-from .argument_quality import *
-from .regressor_select import *
+from nestedhyperline.results import *
+from nestedhyperline.ncv_optimizer import *
+from nestedhyperline.argument_quality import *
+from nestedhyperline.regressor_select import *
 
-from .regressors.ridge_ncv_regressor import *
-from .regressors.lasso_ncv_regressor import *
-from .regressors.elastic_ncv_regressor import *
+from nestedhyperline.regressors.ridge_ncv_regressor import *
+from nestedhyperline. regressors.lasso_ncv_regressor import *
+from nestedhyperline.regressors.elastic_ncv_regressor import *
+from nestedhyperline.reg_params import *
