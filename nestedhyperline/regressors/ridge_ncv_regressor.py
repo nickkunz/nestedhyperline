@@ -8,6 +8,16 @@ from nestedhyperline.ncv_optimizer import ncv_optimizer
 ## ridge regression
 def ridge_ncv_regressor(
     
+    data,
+    y,
+    loss = "root_mean_squared_error",
+    k_outer = 5,
+    k_inner = 5,
+    n_evals = 25,
+    seed = rd.randint(0, 9999),
+    verbose = True 
+    ):
+    
     """
     conducts ridge l2 regularization for linear regression prediction problems,
     returns specified prediction error mean (default: root mean squared error)
@@ -64,16 +74,6 @@ def ridge_ncv_regressor(
     - bool
     - display function output
     """
-    
-    data,
-    y,
-    loss = "root_mean_squared_error",
-    k_outer = 5,
-    k_inner = 5,
-    n_evals = 25,
-    seed = rd.randint(0, 9999),
-    verbose = True 
-    ):
     
     ## conduct input quality checks
     ArgumentQuality(

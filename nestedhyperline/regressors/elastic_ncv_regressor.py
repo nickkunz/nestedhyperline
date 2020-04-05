@@ -8,6 +8,16 @@ from nestedhyperline.ncv_optimizer import ncv_optimizer
 ## elastic-net regression
 def elastic_ncv_regressor(
     
+    data,          ## pandas dataframe, clean (no nan's)
+    y,             ## string, header of y reponse variable
+    loss = "root_mean_squared_error", ## string, objective function to minimize
+    k_outer = 5,   ## pos int, k number of outer folds (1 < k < n)
+    k_inner = 5,   ## pos int, k number of inner folds (1 < k < n)
+    n_evals = 25,  ## pos int, number of evals for bayesian optimization
+    seed = rd.randint(0, 9999),  ## pos int, fix for reproduction
+    verbose = True               ## bool, display output
+    ):
+    
     """
     conducts elastic-net l2 and l1 regularization for linear regression 
     prediction problems
@@ -64,16 +74,6 @@ def elastic_ncv_regressor(
     - bool
     - display function output
     """
-    
-    data,          ## pandas dataframe, clean (no nan's)
-    y,             ## string, header of y reponse variable
-    loss = "root_mean_squared_error", ## string, objective function to minimize
-    k_outer = 5,   ## pos int, k number of outer folds (1 < k < n)
-    k_inner = 5,   ## pos int, k number of inner folds (1 < k < n)
-    n_evals = 25,  ## pos int, number of evals for bayesian optimization
-    seed = rd.randint(0, 9999),  ## pos int, fix for reproduction
-    verbose = True               ## bool, display output
-    ):
     
     ## conduct input quality checks
     ArgumentQuality(
