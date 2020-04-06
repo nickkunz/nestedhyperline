@@ -41,11 +41,11 @@ def elastic_ncv_regressor(
 
     Arguments:
 
-    data: 
+    data:
     - pandas dataframe (n > 2)
     - clean (no nan's)
 
-    y: 
+    y:
     - string
     - header of y reponse variable
 

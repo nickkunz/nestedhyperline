@@ -15,7 +15,7 @@ def ridge_ncv_regressor(
     k_inner = 5,
     n_evals = 25,
     seed = rd.randint(0, 9999),
-    verbose = True 
+    verbose = True
     ):
 
     """
@@ -40,11 +40,11 @@ def ridge_ncv_regressor(
 
     Arguments:
 
-    data: 
+    data:
     - pandas dataframe (n > 2)
     - clean (no nan's)
 
-    y: 
+    y:
     - string
     - header of y reponse variable
 
