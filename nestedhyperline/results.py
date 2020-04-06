@@ -8,10 +8,10 @@ class RegressResults():
     def __init__(self, trials, model, params, error_list):
         
         """
-        calculates and stores the average of all outer k-fold cross-validation 
-        specified errors (mean squared error, mean absolute error, etc.), as 
-        well as all the attributes from the parent Results object, returned to 
-        main function ncv_optimizer()
+        Calculates and stores the average of all Outer K-Fold Cross-Validation 
+        specified errors (Mean Squared Error, Mean Absolute Error, etc.), as 
+        well as all the attributes from the parent Results object. Returns to 
+        main function ncv_optimizer().
         """
         
         self.trials = trials

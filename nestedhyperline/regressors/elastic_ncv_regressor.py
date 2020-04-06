@@ -19,25 +19,27 @@ def elastic_ncv_regressor(
     ):
     
     """
-    conducts elastic-net l2 and l1 regularization for linear regression 
-    prediction problems
+    Conducts Elastic-Net L2 and L1 Regularization for Linear Regression 
+    prediction problems.
     
-    designed for rapid prototyping, quickly obtains prediction results by 
-    compromising implementation details and flexibility
+    Designed for rapid prototyping. Quickly obtains prediction results by 
+    compromising implementation details and flexibility.
     
-    applicable only to linear regression problems, unifies three important 
+    Applicable only to linear regression problems. Unifies three important 
     supervised learning techniques for structured data:
     
-    1) nested k-fold cross validation (minimize bias)
-    2) bayesian optimization (efficient hyper-parameter tuning)
-    3) linear regularization (reduce model complexity)
+    1) Nested K-Fold Cross Validation (minimize bias)
+    2) Bayesian Optimization (efficient hyper-parameter tuning)
+    3) Linear Regularization (reduce model complexity)
 
-    bayesian hyper-parameter optimization is conducted utilizing tree prezen
-    estimation, linear regularization is conducted utilizing l2 and l1
+    Bayesian hyper-parameter optimization is conducted utilizing Tree Prezen
+    Estimation. Linear Regularization is conducted utilizing L2 and L1 shrinkage.
     
-    returns custom regression object:
-    - root mean squared error (or other specified regression metric)
-    - list of root mean squared errors on outer-folds
+    Returns custom regression object containing:
+    - Root Mean Squared Error (RMSE) (or other specified regression metric)
+    - List of RMSE on outer-folds
+    
+    Arguments:
     
     data: 
     - pandas dataframe (n > 2)

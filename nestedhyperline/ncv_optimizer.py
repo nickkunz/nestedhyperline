@@ -1,11 +1,10 @@
 ## load libraries
 import numpy as np
-import pandas as pd
 import warnings as wn
 
 ## mested k-fold cross-validation
+from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold, StratifiedKFold
 
 ## bayesian hyper-parameter optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
@@ -14,9 +13,8 @@ from hyperopt import fmin, tpe, Trials, STATUS_OK
 from sklearn import metrics
 
 ## internal
-from nestedhyperline.argument_quality import ArgumentQuality
-from nestedhyperline.regressor_select import reg_select
 from nestedhyperline.results import RegressResults
+from nestedhyperline.regressor_select import reg_select
 
 ## nested cross-validation and bayesian hyper-param optimization
 def ncv_optimizer(
@@ -29,22 +27,22 @@ def ncv_optimizer(
     ):
     
     """
-    main underlying function, designed for rapid prototyping, quickly obtains 
-    prediction results by compromising implementation details and flexibility
+    The main underlying function designed for rapid prototyping. Quickly obtains 
+    prediction results by compromising implementation details and flexibility.
     
-    applicable only to linear regression problems, unifies three important 
+    Applicable only to linear regression problems. Unifies three important 
     supervised learning techniques for structured data:
     
-    1) nested k-fold cross validation (minimize bias)
-    2) bayesian optimization (efficient hyper-parameter tuning)
-    3) linear regularization (reduce model complexity)
+    1) Nested K-Fold Cross Validation (minimize bias)
+    2) Bayesian Optimization (efficient hyper-parameter tuning)
+    3) Linear Regularization (reduce model complexity)
 
-    bayesian hyper-parameter optimization is conducted utilizing tree prezen
-    estimation, linear regularization is conducted utilizing specified method
+    Bayesian hyper-parameter optimization is conducted utilizing Tree Prezen
+    Estimation. Linear Regularization is conducted utilizing specified method.
     
-    returns custom regression object
-    - root mean squared error (or other specified regression metric)
-    - list of root mean squared errors on outer-folds
+    Returns custom regression object containing:
+    - Root Mean Squared Error (RMSE) or other specified regression metric
+    - List of RMSE on outer-folds
     """
     
     ## suppress warning messages

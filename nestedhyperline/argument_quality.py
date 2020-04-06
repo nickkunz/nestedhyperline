@@ -5,6 +5,13 @@ import pandas as pd
 class ArgumentQuality():
     def __init__(self, data, y, loss, k_outer, k_inner, n_evals, seed, verbose):
         
+        """
+        Conducts input checks on arguments found in regressor functions:
+        ridge_ncv_regressor(), lasso_ncv_regressor(), and elastic_ncv_regressor().
+        Ensure proper usage and execution. This class is intended to raise errors
+        if invalid inputs are passed through the regressor function arguments.
+        """
+        
         self.data = data
         self.y = y
         self.loss = loss
