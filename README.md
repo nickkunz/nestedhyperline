@@ -4,6 +4,9 @@
 
 ## Nested Cross-Validation for Bayesian Optimized Linear Regularization
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.com/nickkunz/nestedhyperline.svg?branch=master)](https://travis-ci.com/nickkunz/nestedhyperline)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a851e718e1441adb251c14458d20b3b)](https://www.codacy.com/manual/nickkunz/nestedhyperline?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nickkunz/nestedhyperline&amp;utm_campaign=Badge_Grade)
+![GitHub last commit](https://img.shields.io/github/last-commit/nickkunz/nestedhyperline)
 
 ## Description
 A Python implementation that unifies Nested K-Fold Cross-Validation, Bayesian Hyperparameter Optimization, and Linear Regularization. Designed for rapid prototyping on small to mid-sized data sets (can be manipulated within memory). Quickly obtains high quality prediction results by abstracting away tedious hyperparameter tuning and implementation details in favor of usability and implementation speed. Bayesian Hyperparamter Optimization utilizes Tree Parzen Estimation (TPE) from the <a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> package. Linear Regularization can be conducted one of three ways. Select between Ridge Regression, LASSO Regression, or Elastic-Net. Useful where linear regression is applicable.
