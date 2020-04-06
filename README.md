@@ -38,7 +38,7 @@ pip install git+https://github.com/nickkunz/nestedhyperline.git
 ## Usage
 ```python
 ## load libraries
-from nestedhyperline.methods import lasso_ncv_regressor
+from nestedhyperline import regressors
 from sklearn import datasets
 import pandas
 
@@ -48,7 +48,7 @@ data = pandas.DataFrame(data_sklearn.data, columns = data_sklearn.feature_names)
 data['target'] = pandas.Series(data_sklearn.target)
 
 ## conduct nestedhyperboost
-results = lasso_ncv_regressor(
+results = regressors.lasso_ncv_regressor(
     data = data,
     y = 'target',
     k_inner = 5,
