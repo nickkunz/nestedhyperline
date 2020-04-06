@@ -51,6 +51,7 @@ data['target'] = pandas.Series(data_sklearn.target)
 results = regressors.lasso_ncv_regressor(
     data = data,
     y = 'target',
+    loss = 'root mean squared error',
     k_inner = 5,
     k_outer = 5,
     n_evals = 100
