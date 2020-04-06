@@ -20,3 +20,7 @@ NestedHyperLine v0.0.2: 2020-04-05
 ==========================
 - Correct module imports
 - Add docstrings to regressor modules
+
+NestedHyperLine v0.0.3: 2020-04-05
+==========================
+- Update loss func strings

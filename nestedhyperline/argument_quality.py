@@ -41,16 +41,16 @@ class ArgumentQuality():
              raise ValueError("'loss' must be a string")
         
         if self.loss in [
-            "explained_variance",
-            "max_error",
-            "mean_absolute_error",
-            "mean_squared_error",
-            "root_mean_squared_error",
-            "mean_squared_log_error",
-            "median_absolute_error",
+            "explained variance", "ev",
+            "max error", "me",
+            "mean absolute error", "mae",
+            "mean squared error", "mse",
+            "root mean squared error", "rmse",
+            "mean squared log error", "msle",
+            "median absolute error", "mdae",
             "r2",
-            "mean_poisson_deviance",
-            "mean_gamma_deviance"
+            "mean poisson deviance", "mpd",
+            "mean gamma deviance", "mgd"
             ] is False:
                 raise ValueError("'loss' must be an accepted sklearn scoring param")
         
