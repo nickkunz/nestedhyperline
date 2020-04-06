@@ -10,11 +10,11 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/nickkunz/nestedhyperline)
 
 ## Description
-A Python implementation that unifies Nested K-Fold Cross-Validation, Bayesian Hyperparameter Optimization, and Linear Regularization. Designed for rapid prototyping on small to mid-sized data sets (can be manipulated within memory). Quickly obtains high quality prediction results by abstracting away tedious hyperparameter tuning and implementation details in favor of usability and implementation speed. Bayesian Hyperparamter Optimization utilizes Tree Parzen Estimation (TPE) from the <a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> package. Linear Regularization can be conducted one of three ways. Select between Ridge Regression, LASSO Regression, or Elastic-Net. Useful where linear regression is applicable.
+A Python implementation that unifies Nested K-Fold Cross-Validation, Bayesian Hyperparameter Optimization, and Linear Regularization. Designed for rapid prototyping on small to mid-sized data sets (can be manipulated within memory). Quickly obtains high quality prediction results by abstracting away tedious hyperparameter tuning and implementation details in favor of usability and implementation speed. Bayesian Hyperparamter Optimization utilizes Tree Parzen Estimation (TPE) from the <a href="https://github.com/hyperopt/hyperopt">Hyperopt</a> package. Linear Regularization can be conducted one of three ways. Select between <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">Ridge</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html">LASSO</a>, or <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html">Elastic-Net</a>. Useful where linear regression is applicable.
 
 ## Features
 1. Consistent syntax across all Linear Regularization methods.
-2. Supported Linear Regularization methods: Ridge, LASSO, Elastic-Net.
+2. Supported Linear Regularization methods: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">Ridge</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html">LASSO</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html">Elastic-Net</a>.
 3. Returns custom object that includes common performance metrics and plots.
 4. Developed for readability, maintainability, and future improvement.
 
