@@ -10,8 +10,13 @@ NestedHyperLine v0.0.0: 2020-04-04
 - Initial testing
 - Beta versioning
 
-NestedHyperLine v0.0.0: 2020-04-05
+NestedHyperLine v0.0.1: 2020-04-05
 ==========================
 - GPLv3 license declaration
 - First git commit
 - PyPI distribution
+
+NestedHyperLine v0.0.2: 2020-04-05
+==========================
+- Correct module imports
+- Add docstrings to regressor modules
