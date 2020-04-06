@@ -3,6 +3,7 @@
 </div>
 
 ## Nested Cross-Validation for Bayesian Optimized Linear Regularization
+[![PyPI version](https://badge.fury.io/py/nestedhyperline.svg)](https://badge.fury.io/py/nestedhyperline)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.com/nickkunz/nestedhyperline.svg?branch=master)](https://travis-ci.com/nickkunz/nestedhyperline)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a851e718e1441adb251c14458d20b3b)](https://www.codacy.com/manual/nickkunz/nestedhyperline?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nickkunz/nestedhyperline&amp;utm_campaign=Badge_Grade)
