@@ -212,7 +212,7 @@ def ncv_optimizer(
     return RegressResults(
         model = model_opt,
         params = params_opt,
-        trials = trials_list,
-        y_pred = y_pred_list,
+        trials_list = trials_list,
+        y_pred_list = y_pred_list,
         error_list = error_list
     )
