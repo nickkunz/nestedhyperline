@@ -57,27 +57,27 @@ def ncv_optimizer(
     )
 
     ## set loss function
-    if loss == "explained_variance" or loss == "ev":
+    if loss == "explained variance" or loss == "ev":
         error_to_score = loss
         error = metrics.explained_variance_score
 
-    if loss == "max_error" or loss == "me":
+    if loss == "max error" or loss == "me":
         error_to_score = loss
         error = metrics.max_error
 
-    if loss == "mean_absolute_error" or loss == "mae":
+    if loss == "mean absolute error" or loss == "mae":
         error_to_score = "mean_absolute_error"
         error = metrics.mean_absolute_error
 
-    if loss == "mean_squared_error" or loss == "mse":
+    if loss == "mean squared error" or loss == "mse":
         error_to_score = "neg_mean_squared_error"
         error = metrics.mean_squared_error
 
-    if loss == "root_mean_squared_error" or loss == "rmse":
+    if loss == "root mean squared error" or loss == "rmse":
         error_to_score = "neg_root_mean_squared_error"
         error = metrics.mean_squared_error
 
-    if loss == "median_absolute_error" or loss == "mdae":
+    if loss == "median absolute error" or loss == "mdae":
         error_to_score = "neg_median_absolute_error"
         error = metrics.median_absolute_error
 
@@ -85,11 +85,11 @@ def ncv_optimizer(
         error_to_score = loss
         error = metrics.r2_score
 
-    if loss == "mean_poisson_deviance" or loss == "mpd":
+    if loss == "mean poisson deviance" or loss == "mpd":
         error_to_score = "neg_mean_poisson_deviance"
         error = metrics.mean_poisson_deviance
 
-    if loss == "mean_gamma_deviance" or loss == "mgd":
+    if loss == "mean gamma deviance" or loss == "mgd":
         error_to_score = "neg_mean_gamma_deviance"
         error = metrics.mean_gamma_deviance
 
