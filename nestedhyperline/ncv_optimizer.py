@@ -103,7 +103,7 @@ def ncv_optimizer(
     y_test_list = []
     y_pred_list = []
     x_test_list = []
-    trails_list = []
+    trials_list = []
     error_list = []
 
     ## outer loop k-folds
