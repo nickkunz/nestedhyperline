@@ -194,7 +194,7 @@ def ncv_optimizer(
         y_test_list.append(y_test)
         y_pred_list.append(y_pred)
         trials_list.append(trials)
-        coef_list.append(coefs)
+        coef_list.append(coef)
 
         ## calculate error
         if loss == "root_mean_squared_error":
