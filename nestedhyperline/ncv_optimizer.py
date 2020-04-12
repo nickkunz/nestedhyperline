@@ -219,5 +219,6 @@ def ncv_optimizer(
         params = params_opt,
         trials_list = trials_list,
         y_pred_list = y_pred_list,
-        error_list = error_list
+        error_list = error_list,
+        coef_list = coef_list
     )
