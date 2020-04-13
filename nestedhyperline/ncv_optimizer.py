@@ -157,16 +157,16 @@ def ncv_optimizer(
                 )
 
                 ## training  set
-                model = model_opt.fit(
+                model = model.fit(
                     X = x_train,
                     y = y_train
                 )
 
                 ## make prediction on validation set
-                y_pred = model_opt.predict(x_valid)
+                y_pred = model.predict(x_valid)
 
                 ## store coefficients
-                coef = model_opt.coef_
+                coef = model.coef_
 
                 ## calculate loss
                 if loss == "root_mean_squared_error":
