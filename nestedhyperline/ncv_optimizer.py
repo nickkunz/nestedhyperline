@@ -58,39 +58,30 @@ def ncv_optimizer(
 
     ## set loss function
     if loss == "explained variance" or loss == "ev":
-        error_to_score = loss
         error = metrics.explained_variance_score
 
     if loss == "max error" or loss == "me":
-        error_to_score = loss
         error = metrics.max_error
 
     if loss == "mean absolute error" or loss == "mae":
-        error_to_score = "mean_absolute_error"
         error = metrics.mean_absolute_error
 
     if loss == "mean squared error" or loss == "mse":
-        error_to_score = "neg_mean_squared_error"
         error = metrics.mean_squared_error
 
     if loss == "root mean squared error" or loss == "rmse":
-        error_to_score = "neg_root_mean_squared_error"
         error = metrics.mean_squared_error
 
     if loss == "median absolute error" or loss == "mdae":
-        error_to_score = "neg_median_absolute_error"
         error = metrics.median_absolute_error
 
     if loss == "r2":
-        error_to_score = loss
         error = metrics.r2_score
 
     if loss == "mean poisson deviance" or loss == "mpd":
-        error_to_score = "neg_mean_poisson_deviance"
         error = metrics.mean_poisson_deviance
 
     if loss == "mean gamma deviance" or loss == "mgd":
-        error_to_score = "neg_mean_gamma_deviance"
         error = metrics.mean_gamma_deviance
 
     ## reset data index
@@ -170,26 +161,26 @@ def ncv_optimizer(
 
                 ## calculate loss
                 if loss == "root_mean_squared_error":
-                    
+
                     ## squared loss
-                    loss = error(
+                    error = error(
                         y_true = y_valid,
                         y_pred = y_pred,
                         squared = True,
                     )
 
                 else:
-                    loss = error(
+                    error = error(
                         y_true = y_valid,
                         y_pred = y_pred
                     )
 
             ## average loss
-            loss_mean = np.average(loss)
+            error_mean = np.average(error)
 
             ## return averaged cross-valid scores and status report
             return {
-                'loss': loss_mean, 
+                'loss': error_mean, 
                 'coef': coef,
                 'status': STATUS_OK
             }
