@@ -104,15 +104,14 @@ def ncv_optimizer(
     y_pred_list = []
     trials_list = []
     error_list = []
-    coef_list = []
 
-    ## outer loop k-folds
+    ## outer k-folds
     k_folds_outer = KFold(
         n_splits = k_outer,
         shuffle = False
     )
 
-    ## split data into training-validation and test sets by k-folds
+    ## split data into training-validation and test sets
     for train_valid_index, test_index in k_folds_outer.split(data):
 
         ## explanatory features x
@@ -131,32 +130,69 @@ def ncv_optimizer(
             """ objective function to minimize utilizing
             bayesian hyper-parameter optimization """
 
-            ## method, params, and objective
-            model = reg_select(
-                method = method,
-                params = params,
-                seed = seed
+            ## inner k-folds
+            k_folds_inner = KFold(
+                n_splits = k_inner,
+                shuffle = False
             )
 
-            ## inner loop cross-valid
-            cv_scores = cross_val_score(
-                estimator = model,
-                X = x_train_valid,
-                y = y_train_valid,
-                scoring = error_to_score,
-                cv = KFold(
-                    n_splits = k_inner,
-                    random_state = seed,
-                    shuffle = False
-                ),
-                n_jobs = -1  ## utilize all cores
-            )
+            ## split data into training-and validation test sets
+            for train_index, valid_index in k_folds_inner.split(x_train_valid):
 
-            ## average the minimized inner loop cross-valid scores
-            cv_scores_mean = 1 - np.average(cv_scores)
+                ## explanatory features x
+                x_train, x_valid = x_train_valid.iloc[
+                    train_index], x_train_valid.iloc[
+                        valid_index]
+
+                ## response variable y
+                y_train, y_valid = y_train_valid.iloc[
+                    train_index], y_train_valid.iloc[
+                        valid_index]
+
+                ## method and params
+                model = reg_select(
+                    method = method,
+                    params = params,
+                    seed = seed
+                )
+
+                ## training  set
+                model = model_opt.fit(
+                    X = x_train,
+                    y = y_train
+                )
+
+                ## make prediction on validation set
+                y_pred = model_opt.predict(x_valid)
+
+                ## store coefficients
+                coef = model_opt.coef_
+
+                ## calculate loss
+                if loss == "root_mean_squared_error":
+                    
+                    ## squared loss
+                    loss = error(
+                        y_true = y_valid,
+                        y_pred = y_pred,
+                        squared = True,
+                    )
+
+                else:
+                    loss = error(
+                        y_true = y_valid,
+                        y_pred = y_pred
+                    )
+
+            ## average loss
+            loss_mean = np.average(loss)
 
             ## return averaged cross-valid scores and status report
-            return {'loss': cv_scores_mean, 'status': STATUS_OK}
+            return {
+                'loss': loss_mean, 
+                'coef': coef,
+                'status': STATUS_OK
+            }
 
         ## record results
         trials = Trials()
@@ -187,17 +223,15 @@ def ncv_optimizer(
         ## make prediction on test set
         y_pred = model_opt.predict(x_test)
 
-        ## store coefficients
-        coef = model_opt.coef_
-
         ## store outer cross-validation results
         y_test_list.append(y_test)
         y_pred_list.append(y_pred)
         trials_list.append(trials)
-        coef_list.append(coef)
 
-        ## calculate error
+        ## calculate loss
         if loss == "root_mean_squared_error":
+            
+            ## squared loss
             error_list.append(
                 error(
                     y_true = y_test,
@@ -205,6 +239,7 @@ def ncv_optimizer(
                     squared = True
                 )
             )
+
         else:
             error_list.append(
                 error(
