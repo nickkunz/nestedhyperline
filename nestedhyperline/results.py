@@ -5,9 +5,7 @@ import matplotlib.pylab as plt
 
 ## store regression results
 class RegressResults():
-    def __init__(self, 
-        
-        model, params, trials_list, y_pred_list, error_list, coef_list):
+    def __init__(self, model, params, trials_list, y_pred_list, error_list):
         
         """
         Calculates and stores the average of all Outer K-Fold Cross-Validation 
@@ -21,7 +19,6 @@ class RegressResults():
         self.trials_list = trials_list
         self.y_pred_list = y_pred_list
         self.error_list = error_list
-        self.coef_list = coef_list
     
     ## average rmse results across outer k-folds
     def error_mean(self):

@@ -244,5 +244,4 @@ def ncv_optimizer(
         trials_list = trials_list,
         y_pred_list = y_pred_list,
         error_list = error_list,
-        coef_list = coef_list
     )
