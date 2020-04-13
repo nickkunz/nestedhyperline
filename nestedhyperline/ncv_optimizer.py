@@ -58,31 +58,31 @@ def ncv_optimizer(
 
     ## set loss function
     if loss == "explained variance" or loss == "ev":
-        error = metrics.explained_variance_score
+        loss_func = metrics.explained_variance_score
 
     if loss == "max error" or loss == "me":
-        error = metrics.max_error
+        loss_func = metrics.max_error
 
     if loss == "mean absolute error" or loss == "mae":
-        error = metrics.mean_absolute_error
+        loss_func = metrics.mean_absolute_error
 
     if loss == "mean squared error" or loss == "mse":
-        error = metrics.mean_squared_error
+        loss_func = metrics.mean_squared_error
 
     if loss == "root mean squared error" or loss == "rmse":
-        error = metrics.mean_squared_error
+        loss_func = metrics.mean_squared_error
 
     if loss == "median absolute error" or loss == "mdae":
-        error = metrics.median_absolute_error
+        loss_func = metrics.median_absolute_error
 
     if loss == "r2":
-        error = metrics.r2_score
+        loss_func = metrics.r2_score
 
     if loss == "mean poisson deviance" or loss == "mpd":
-        error = metrics.mean_poisson_deviance
+        loss_func = metrics.mean_poisson_deviance
 
     if loss == "mean gamma deviance" or loss == "mgd":
-        error = metrics.mean_gamma_deviance
+        loss_func = metrics.mean_gamma_deviance
 
     ## reset data index
     data.reset_index(
@@ -116,7 +116,7 @@ def ncv_optimizer(
                 test_index]
 
         ## objective function
-        def obj_fun(params):
+        def obj_func(params):
 
             """ objective function to minimize utilizing
             bayesian hyper-parameter optimization """
@@ -163,14 +163,14 @@ def ncv_optimizer(
                 if loss == "root_mean_squared_error":
 
                     ## squared loss
-                    error = error(
+                    error = loss_func(
                         y_true = y_valid,
                         y_pred = y_pred,
                         squared = True,
                     )
 
                 else:
-                    error = error(
+                    error = loss_func(
                         y_true = y_valid,
                         y_pred = y_pred
                     )
@@ -190,7 +190,7 @@ def ncv_optimizer(
 
         ## conduct bayesian optimization, inner loop cross-valid
         params_opt = fmin(
-            fn = obj_fun,
+            fn = obj_func,
             space = params,
             algo = tpe.suggest,  ## tree parzen estimation
             max_evals = n_evals,
@@ -224,7 +224,7 @@ def ncv_optimizer(
             
             ## squared loss
             error_list.append(
-                error(
+                loss_func(
                     y_true = y_test,
                     y_pred = y_pred,
                     squared = True
@@ -233,7 +233,7 @@ def ncv_optimizer(
 
         else:
             error_list.append(
-                error(
+                loss_func(
                     y_true = y_test,
                     y_pred = y_pred
                 )
