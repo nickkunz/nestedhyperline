@@ -168,7 +168,6 @@ def ncv_optimizer(
                         y_pred = y_pred,
                         squared = True,
                     )
-
                 else:
                     error = loss_func(
                         y_true = y_valid,
@@ -230,7 +229,6 @@ def ncv_optimizer(
                     squared = True
                 )
             )
-
         else:
             error_list.append(
                 loss_func(
