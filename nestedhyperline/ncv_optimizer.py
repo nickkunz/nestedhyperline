@@ -95,7 +95,8 @@ def ncv_optimizer(
     y_pred_list = []
     trials_list = []
     error_list = []
-
+    coef_list = []
+    
     ## outer k-folds
     k_folds_outer = KFold(
         n_splits = k_outer,
@@ -217,11 +218,6 @@ def ncv_optimizer(
         ## make prediction on test set
         y_pred = model_opt.predict(x_test)
 
-        ## store outer cross-validation results
-        y_test_list.append(y_test)
-        y_pred_list.append(y_pred)
-        trials_list.append(trials)
-
         ## calculate loss
         if loss == "root_mean_squared_error":
             
@@ -242,11 +238,17 @@ def ncv_optimizer(
                 )
             )
 
+        ## store outer cross-validation results
+        trials_list.append(trials)
+        y_test_list.append(y_test)
+        y_pred_list.append(y_pred)
+        coef_list.append(coef)
+
     ## custom regression object
     return RegressResults(
         model = model_opt,
         params = params_opt,
-        coef = coef,
+        coef_list = coef_list,
         trials_list = trials_list,
         y_pred_list = y_pred_list,
         error_list = error_list,
