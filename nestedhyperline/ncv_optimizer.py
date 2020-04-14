@@ -206,7 +206,7 @@ def ncv_optimizer(
             seed = seed
         )
 
-        ## train on entire training-validation set
+        ## train on entire training-valid set
         model_opt = model_opt.fit(
             X = x_train_valid,
             y = y_train_valid
@@ -238,7 +238,7 @@ def ncv_optimizer(
                 )
             )
 
-        ## store outer cross-validation results
+        ## store outer cross-valid results
         trials_list.append(trials)
         y_test_list.append(y_test)
         y_pred_list.append(y_pred)
