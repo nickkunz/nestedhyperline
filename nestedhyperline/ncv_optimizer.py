@@ -153,22 +153,23 @@ def ncv_optimizer(
                     y = y_train
                 )
 
-                ## make prediction on validation set
-                y_pred = model.predict(x_valid)
-
                 ## store coefficients
                 coef = model.coef_
+
+                ## make prediction on validation set
+                y_pred = model.predict(x_valid)
 
                 ## calculate loss
                 if loss == "root_mean_squared_error":
 
-                    ## squared loss
+                    ## squared root loss
                     error = loss_func(
                         y_true = y_valid,
                         y_pred = y_pred,
                         squared = True,
                     )
                 else:
+                    ## squared loss
                     error = loss_func(
                         y_true = y_valid,
                         y_pred = y_pred
@@ -210,6 +211,9 @@ def ncv_optimizer(
             y = y_train_valid
         )
 
+        ## store coefficients
+        coef = model_opt.coef_
+
         ## make prediction on test set
         y_pred = model_opt.predict(x_test)
 
@@ -221,7 +225,7 @@ def ncv_optimizer(
         ## calculate loss
         if loss == "root_mean_squared_error":
             
-            ## squared loss
+            ## squared root loss
             error_list.append(
                 loss_func(
                     y_true = y_test,
@@ -230,6 +234,7 @@ def ncv_optimizer(
                 )
             )
         else:
+            ## squared loss
             error_list.append(
                 loss_func(
                     y_true = y_test,
@@ -241,6 +246,7 @@ def ncv_optimizer(
     return RegressResults(
         model = model_opt,
         params = params_opt,
+        coef = coef,
         trials_list = trials_list,
         y_pred_list = y_pred_list,
         error_list = error_list,
