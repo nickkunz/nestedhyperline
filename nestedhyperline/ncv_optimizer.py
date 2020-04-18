@@ -116,14 +116,14 @@ def ncv_optimizer(
             x_column_names = x_train_valid.columns
 
             ## train-valid set
-            x_train_valid = StandardScalter().fit_transform(x_train_valid)
+            x_train_valid = StandardScaler().fit_transform(x_train_valid)
             x_train_valid = pd.DataFrame(
                 data = x_train_valid,
                 columns = x_column_names
             )
 
             ## test set
-            x_test = StandardScalter().fit_transform(x_test)
+            x_test = StandardScaler().fit_transform(x_test)
             x_test = pd.DataFrame(
                 data = x_test,
                 columns = x_column_names
