@@ -3,15 +3,16 @@ import pandas as pd
 
 ## create input quality checks for regressor and classifier
 class ArgumentQuality():
-    def __init__(self, data, y, loss, k_outer, k_inner, n_evals, seed, verbose):
-        
+    def __init__(self, data, y, loss, k_outer, k_inner, n_evals, 
+                 seed, standard, verbose):
+
         """
         Conducts input checks on arguments found in regressor functions:
         ridge_ncv_regressor(), lasso_ncv_regressor(), and elastic_ncv_regressor().
         Ensure proper usage and execution. This class is intended to raise errors
         if invalid inputs are passed through the regressor function arguments.
         """
-        
+
         self.data = data
         self.y = y
         self.loss = loss
@@ -19,27 +20,28 @@ class ArgumentQuality():
         self.k_inner = k_inner
         self.n_evals = n_evals
         self.seed = seed
+        self.standard = standard
         self.verbose = verbose
-        
+
         ## quality check for dataframe
         if isinstance(self.data, pd.DataFrame) is False:
              raise ValueError("must pass pandas dataframe into 'data' argument")
-        
+
         ## quality check for missing values in dataframe
         if self.data.isnull().values.any():
              raise ValueError("dataframe cannot contain missing values")
-        
+
         ## quality check for y
         if isinstance(self.y, str) is False:
              raise ValueError("'y' must be a string")
-        
+
         if self.y in self.data.columns.values is False:
              raise ValueError("'y' must be an header name (string) found in the dataframe")
-        
+
         ## quality check for loss 
         if isinstance(self.loss, str) is False:
              raise ValueError("'loss' must be a string")
-        
+
         if self.loss in [
             "explained variance", "ev",
             "max error", "me",
@@ -53,29 +55,33 @@ class ArgumentQuality():
             "mean gamma deviance", "mgd"
             ] is False:
                 raise ValueError("'loss' must be an accepted sklearn scoring param")
-        
+
         ## quality check for k-fold outer argument
         if self.k_outer > len(self.data):
              raise ValueError("'k_outer' is greater than number of observations (rows)")
-        
+
         if self.k_outer < 2:
              raise ValueError("'k_outer' must be a positive integer greater than 1")
-        
+
         ## quality check for k-fold inner argument
         if self.k_inner > len(self.data):
              raise ValueError("'k_inner' is greater than number of observations (rows)")
-        
+
         if self.k_inner < 2:
              raise ValueError("'k_inner' must be a positive integer greater than 1")
-        
+
         ## quality check for number of evaluations
         if self.n_evals < 1:
              raise ValueError("'n_evals' must be a positive integer")
-        
+
         ## quality check for random seed
         if self.seed < 1:
              raise ValueError("'seed 'must be a positive integer")
-        
+
+        ## quality check for standardization
+        if isinstance(self.standard, bool) is False:
+             raise ValueError("'standard' must be boolean")
+
         ## quality check for verbose
         if isinstance(self.verbose, bool) is False:
              raise ValueError("'verbose' must be boolean")

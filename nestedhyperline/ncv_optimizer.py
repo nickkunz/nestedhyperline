@@ -3,6 +3,7 @@ import numpy as np
 import warnings as wn
 
 ## mested k-fold cross-validation
+from sklearn import preprocessing
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
@@ -20,7 +21,7 @@ from nestedhyperline.regressor_select import reg_select
 def ncv_optimizer(
 
     ## main func args
-    data, y, loss, k_outer, k_inner, n_evals, seed, verbose,
+    data, y, loss, k_outer, k_inner, n_evals, seed, standard, verbose,
 
     ## pred func args
     method, params
@@ -92,7 +93,6 @@ def ncv_optimizer(
 
     ## test set prediction stores
     y_test_list = []
-    y_pred_list = []
     trials_list = []
     error_list = []
     coef_list = []
@@ -110,6 +110,11 @@ def ncv_optimizer(
         x_train_valid, x_test = data.drop(y, axis = 1).iloc[
             train_valid_index], data.drop(y, axis = 1).iloc[
                 test_index]
+
+        ## standardize explanatory features x
+        if standardize == True:
+            x_train_valid = preprocessing.scale(x_train_valid)
+            x_test = preprocessing.scale(x_test)
 
         ## response variable y
         y_train_valid, y_test = data[y].iloc[
@@ -240,8 +245,6 @@ def ncv_optimizer(
 
         ## store outer cross-valid results
         trials_list.append(trials)
-        y_test_list.append(y_test)
-        y_pred_list.append(y_pred)
         coef_list.append(coef)
 
     ## custom regression object
@@ -250,6 +253,5 @@ def ncv_optimizer(
         params = params_opt,
         coef_list = coef_list,
         trials_list = trials_list,
-        y_pred_list = y_pred_list,
-        error_list = error_list,
+        error_list = error_list
     )
