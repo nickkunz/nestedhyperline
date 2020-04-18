@@ -15,6 +15,7 @@ def elastic_ncv_regressor(
     k_inner = 5,
     n_evals = 25,
     seed = rd.randint(0, 9999),
+    standard = True,
     verbose = True
     ):
 
@@ -72,6 +73,10 @@ def elastic_ncv_regressor(
     - pos int
     - fix to reproduce results
 
+    standard:
+    - pos int
+    - standardizes explanatory features
+
     verbose:
     - bool
     - display function output
@@ -86,6 +91,7 @@ def elastic_ncv_regressor(
         k_inner = k_inner,
         n_evals = n_evals,
         seed = seed,
+        standard = standard,
         verbose = verbose
     )
 
@@ -104,6 +110,7 @@ def elastic_ncv_regressor(
         k_inner = k_inner,
         n_evals = n_evals,
         seed = seed,
+        standard = standard,
         verbose = verbose,
 
         ## pred func args
