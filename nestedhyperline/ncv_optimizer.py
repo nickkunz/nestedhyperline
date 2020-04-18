@@ -3,9 +3,9 @@ import numpy as np
 import warnings as wn
 
 ## mested k-fold cross-validation
-from sklearn import preprocessing
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler
 
 ## bayesian hyper-parameter optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
@@ -103,7 +103,7 @@ def ncv_optimizer(
         shuffle = False
     )
 
-    ## split data into training-validation and test sets
+    ## split data into train-valid and test sets
     for train_valid_index, test_index in k_folds_outer.split(data):
 
         ## explanatory features x
@@ -113,8 +113,21 @@ def ncv_optimizer(
 
         ## standardize explanatory features x
         if standard == True:
-            x_train_valid = preprocessing.scale(x_train_valid)
-            x_test = preprocessing.scale(x_test)
+            x_column_names = x_train_valid.columns
+
+            ## train-valid set
+            x_train_valid = StandardScalter().fit_transform(x_train_valid)
+            x_train_valid = pd.DataFrame(
+                data = x_train_valid,
+                columns = x_column_names
+            )
+
+            ## test set
+            x_test = StandardScalter().fit_transform(x_test)
+            x_test = pd.DataFrame(
+                data = x_test,
+                columns = x_column_names
+            )
 
         ## response variable y
         y_train_valid, y_test = data[y].iloc[
