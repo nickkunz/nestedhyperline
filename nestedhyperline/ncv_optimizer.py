@@ -112,7 +112,7 @@ def ncv_optimizer(
                 test_index]
 
         ## standardize explanatory features x
-        if standardize == True:
+        if standard == True:
             x_train_valid = preprocessing.scale(x_train_valid)
             x_test = preprocessing.scale(x_test)
 
