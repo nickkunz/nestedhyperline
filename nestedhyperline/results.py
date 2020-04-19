@@ -5,7 +5,9 @@ import matplotlib.pylab as plt
 
 ## store regression results
 class RegressResults():
-    def __init__(self, y, model, params, coef_list, trials_list, error_list):
+    def __init__(self, y, model, params, 
+                 coef_list, trials_list, error_list,
+                 standardize):
         
         """
         Calculates and stores the average of all Outer K-Fold Cross-Validation 
