@@ -4,7 +4,7 @@ import pandas as pd
 ## create input quality checks for regressor and classifier
 class ArgumentQuality():
     def __init__(self, data, y, loss, k_outer, k_inner, n_evals, 
-                 seed, standard, verbose):
+                 random_state, standardize, verbose):
 
         """
         Conducts input checks on arguments found in regressor functions:
