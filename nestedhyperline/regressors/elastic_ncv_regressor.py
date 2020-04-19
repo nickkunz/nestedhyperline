@@ -14,8 +14,8 @@ def elastic_ncv_regressor(
     k_outer = 5,
     k_inner = 5,
     n_evals = 25,
-    seed = rd.randint(0, 9999),
-    standard = True,
+    random_state = rd.randint(0, 9999),
+    standardize = True,
     verbose = True
     ):
 
@@ -69,13 +69,13 @@ def elastic_ncv_regressor(
     - number of evals for bayesian optimization
     - default 25
 
-    seed:
+    random_state:
     - pos int
     - fix to reproduce results
 
-    standard:
-    - pos int
-    - standardizes explanatory features
+    standardize:
+    - bool
+    - standardizes data
 
     verbose:
     - bool
@@ -90,8 +90,8 @@ def elastic_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
-        standard = standard,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose
     )
 
@@ -109,8 +109,8 @@ def elastic_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
-        standard = standard,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose,
 
         ## pred func args

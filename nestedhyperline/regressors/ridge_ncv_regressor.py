@@ -68,13 +68,13 @@ def ridge_ncv_regressor(
     - number of evals for bayesian optimization
     - default 25
 
-    seed:
+    random_state:
     - pos int
     - fix to reproduce results
 
-    standard:
-    - pos int
-    - standardizes explanatory features
+    standardize:
+    - bool
+    - standardizes data
 
     verbose:
     - bool
@@ -89,8 +89,8 @@ def ridge_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
-        standard = standard,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose
     )
 
@@ -108,8 +108,8 @@ def ridge_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
-        standard = standard,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose,
 
         ## pred func args

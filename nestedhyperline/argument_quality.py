@@ -19,8 +19,8 @@ class ArgumentQuality():
         self.k_outer = k_outer
         self.k_inner = k_inner
         self.n_evals = n_evals
-        self.seed = seed
-        self.standard = standard
+        self.random_state = random_state,
+        self.standardize = standardize,
         self.verbose = verbose
 
         ## quality check for dataframe
@@ -74,12 +74,12 @@ class ArgumentQuality():
         if self.n_evals < 1:
              raise ValueError("'n_evals' must be a positive integer")
 
-        ## quality check for random seed
-        if self.seed < 1:
+        ## quality check for random state
+        if self.random_state < 1:
              raise ValueError("'seed 'must be a positive integer")
 
         ## quality check for standardization
-        if isinstance(self.standard, bool) is False:
+        if isinstance(self.standardize, bool) is False:
              raise ValueError("'standard' must be boolean")
 
         ## quality check for verbose

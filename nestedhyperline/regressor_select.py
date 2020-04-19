@@ -2,7 +2,7 @@
 from sklearn.linear_model import Ridge, Lasso, ElasticNet
 
 ## boosting method (xgboost, lightgbm, catboost)
-def reg_select(method, params, seed):
+def reg_select(method, params, rand):
     
     ## ridge and lasso
     if method in [Ridge, Lasso]:
@@ -14,7 +14,7 @@ def reg_select(method, params, seed):
             alpha = params["alpha"],
             
             ## specified params
-            random_state = seed
+            random_state = random_state
         )
     
     ## lightgbm
@@ -27,7 +27,7 @@ def reg_select(method, params, seed):
             l1_ratio = params["l1_ratio"],
             
             ## specified params
-            random_state = seed
+            random_state = random_state
         )
     
     ## returns boosting method and params

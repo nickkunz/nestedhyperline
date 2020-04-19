@@ -22,7 +22,8 @@ from nestedhyperline.regressor_select import reg_select
 def ncv_optimizer(
 
     ## main func args
-    data, y, loss, k_outer, k_inner, n_evals, seed, standard, verbose,
+    data, y, loss, k_outer, k_inner, n_evals, 
+    random_state, standardize, verbose,
 
     ## pred func args
     method, params
@@ -91,9 +92,9 @@ def ncv_optimizer(
         inplace = True,
         drop = True
     )
-    
+
     ## standardize explanatory features x
-    if standard == True:
+    if standardize == True:
         column_names = data.columns
         data = StandardScaler().fit_transform(data)
         data = pd.DataFrame(
@@ -155,7 +156,7 @@ def ncv_optimizer(
                 model = reg_select(
                     method = method,
                     params = params,
-                    seed = seed
+                    random_state = random_state
                 )
 
                 ## training  set
@@ -213,7 +214,7 @@ def ncv_optimizer(
         model_opt = reg_select(
             method = method,
             params = params_opt,
-            seed = seed
+            random_state = random_state
         )
 
         ## train on entire training-valid set
@@ -254,9 +255,11 @@ def ncv_optimizer(
 
     ## custom regression object
     return RegressResults(
+        y = y,
         model = model_opt,
         params = params_opt,
         coef_list = coef_list,
         trials_list = trials_list,
-        error_list = error_list
+        error_list = error_list,
+        standardize = standardize
     )
