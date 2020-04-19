@@ -91,6 +91,15 @@ def ncv_optimizer(
         inplace = True,
         drop = True
     )
+    
+    ## standardize explanatory features x
+    if standard == True:
+        column_names = data.columns
+        data = StandardScaler().fit_transform(data)
+        data = pd.DataFrame(
+            data = data,
+            columns = column_names
+        )
 
     ## test set prediction stores
     y_test_list = []
@@ -111,24 +120,6 @@ def ncv_optimizer(
         x_train_valid, x_test = data.drop(y, axis = 1).iloc[
             train_valid_index], data.drop(y, axis = 1).iloc[
                 test_index]
-
-        ## standardize explanatory features x
-        if standard == True:
-            x_column_names = x_train_valid.columns
-
-            ## train-valid set
-            x_train_valid = StandardScaler().fit_transform(x_train_valid)
-            x_train_valid = pd.DataFrame(
-                data = x_train_valid,
-                columns = x_column_names
-            )
-
-            ## test set
-            x_test = StandardScaler().fit_transform(x_test)
-            x_test = pd.DataFrame(
-                data = x_test,
-                columns = x_column_names
-            )
 
         ## response variable y
         y_train_valid, y_test = data[y].iloc[
