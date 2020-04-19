@@ -14,8 +14,8 @@ def ridge_ncv_regressor(
     k_outer = 5,
     k_inner = 5,
     n_evals = 25,
-    seed = rd.randint(0, 9999),
-    standard = True,
+    random_state = rd.randint(0, 9999),
+    standardize = True,
     verbose = True
     ):
 

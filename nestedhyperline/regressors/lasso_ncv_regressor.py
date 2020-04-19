@@ -14,8 +14,8 @@ def lasso_ncv_regressor(
     k_outer = 5,
     k_inner = 5,
     n_evals = 25,
-    random_state = random_state,
-    standardize = standardize,
+    random_state = rd.randint(0, 9999),
+    standardize = True,
     verbose = True
     ):
 
