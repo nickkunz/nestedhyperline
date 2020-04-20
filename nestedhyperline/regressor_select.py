@@ -13,8 +13,12 @@ def reg_select(method, params, random_state):
             ## learned params
             alpha = params["alpha"],
 
+            ## max number of iterations
+            max_iter = 10000,
+
             ## specified params
             random_state = random_state
+
         )
 
     ## lightgbm
@@ -25,6 +29,9 @@ def reg_select(method, params, random_state):
             ## learned params
             alpha = params["alpha"],
             l1_ratio = params["l1_ratio"],
+
+            ## max number of iterations
+            max_iter = 10000,
 
             ## specified params
             random_state = random_state
