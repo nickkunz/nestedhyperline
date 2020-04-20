@@ -14,7 +14,7 @@ def reg_select(method, params, random_state):
             alpha = params["alpha"],
 
             ## max number of iterations
-            max_iter = 10000,
+            max_iter = 100000,
 
             ## specified params
             random_state = random_state
@@ -31,7 +31,7 @@ def reg_select(method, params, random_state):
             l1_ratio = params["l1_ratio"],
 
             ## max number of iterations
-            max_iter = 10000,
+            max_iter = 100000,
 
             ## specified params
             random_state = random_state
