@@ -14,7 +14,7 @@ def reg_params():
         'alpha': hp.loguniform(
             label = 'alpha',
             low = np.log(0.0001),
-            high = np.log(1)
+            high = np.log(3)
         )
     }
     
