@@ -13,7 +13,7 @@ def reg_params():
         ## lambda shrinkage
         'alpha': hp.loguniform(
             label = 'alpha',
-            low = np.log(0.0001),
+            low = np.log(0.00001),
             high = np.log(3)
         )
     }
@@ -31,7 +31,7 @@ def net_params():
         ## lambda shrinkage
         'alpha': hp.loguniform(
             label = 'alpha',
-            low = np.log(0.0001),
+            low = np.log(0.00001),
             high = np.log(3)
         ),
         
