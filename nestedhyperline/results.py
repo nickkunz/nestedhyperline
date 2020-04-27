@@ -2,6 +2,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pylab as plt
+import matplotlib.ticker as tkr
+import matplotlib.cm as cm
+import seaborn as sns
+import numpy as np
 
 ## store regression results
 class RegressResults():
