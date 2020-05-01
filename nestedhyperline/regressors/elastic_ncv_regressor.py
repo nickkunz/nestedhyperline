@@ -10,7 +10,7 @@ def elastic_ncv_regressor(
 
     data,
     y,
-    loss = "root mean squared error",
+    loss = "rmse",
     k_outer = 5,
     k_inner = 5,
     n_evals = 25,
