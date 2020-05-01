@@ -230,8 +230,8 @@ def ncv_optimizer(
         y_pred = model_opt.predict(x_test)
 
         ## calculate loss
-        if loss == "root_mean_squared_error":
-            
+        if loss == "root mean squared error" or loss == "rmse":
+
             ## squared root loss
             error_list.append(
                 loss_func(
