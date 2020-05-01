@@ -11,15 +11,15 @@ import numpy as np
 class RegressResults():
     def __init__(self, y, model, params, 
                  coef_list, trials_list, error_list,
-                 standardize):
-        
+                 standardize, k_outer, n_evals):
+
         """
         Calculates and stores the average of all Outer K-Fold Cross-Validation 
         specified errors (Mean Squared Error, Mean Absolute Error, etc.), as 
         well as all the attributes from the parent Results object. Returns to 
         main function ncv_optimizer().
         """
-        
+
         self.y = y
         self.model = model
         self.params = params
@@ -27,14 +27,16 @@ class RegressResults():
         self.trials_list = trials_list
         self.error_list = error_list
         self.standardize = standardize
-    
-    ## average rmse results across outer k-folds
-    def error_mean(self):
+        self.k_outer = k_outer
+        self.n_evals = n_evals
+
+    ## average errors across outer k-folds
+    def error_mean(ndigits = 4):
         error_mean = round(np.average(
             self.error_list
             
             ## round results
-            ), ndigits = 6
+            ), ndigits = ndigits
         )
         
         return error_mean
