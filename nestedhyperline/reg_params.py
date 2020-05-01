@@ -14,7 +14,7 @@ def reg_params():
         'alpha': hp.loguniform(
             label = 'alpha',
             low = np.log(0.00001),
-            high = np.log(3)
+            high = np.log(1)
         )
     }
     
@@ -32,7 +32,7 @@ def net_params():
         'alpha': hp.loguniform(
             label = 'alpha',
             low = np.log(0.00001),
-            high = np.log(3)
+            high = np.log(1)
         ),
         
         # l2 and l1 mixture
