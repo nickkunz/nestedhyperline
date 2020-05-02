@@ -120,3 +120,4 @@ def elastic_ncv_regressor(
 
     ## regression results object
     return ncv_results
+

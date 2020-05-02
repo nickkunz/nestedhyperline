@@ -28,6 +28,7 @@ NestedHyperLine v0.0.3: 2020-04-05
 NestedHyperLine v0.0.4: 2020-04-12
 ==========================
 - Store coefficients
+- Standardize coefficients
 - Add coefficient shrinkage plot
 - Add bayesian optimization plot
 - Add loss function plot

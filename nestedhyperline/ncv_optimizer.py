@@ -103,7 +103,6 @@ def ncv_optimizer(
         )
 
     ## test set prediction stores
-    y_test_list = []
     trials_list = []
     error_list = []
     coef_list = []
@@ -261,5 +260,7 @@ def ncv_optimizer(
         coef_list = coef_list,
         trials_list = trials_list,
         error_list = error_list,
-        standardize = standardize
+        standardize = standardize,
+        k_outer = k_outer,
+        n_evals = n_evals
     )
