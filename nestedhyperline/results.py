@@ -31,12 +31,12 @@ class RegressResults():
         self.n_evals = n_evals
 
     ## average errors across outer k-folds
-    def error_mean(ndigits = 4):
+    def error_mean(self):
         error_mean = round(np.average(
             self.error_list
-            
+
             ## round results
-            ), ndigits = ndigits
+            ), ndigits = 6
         )
-        
+
         return error_mean
