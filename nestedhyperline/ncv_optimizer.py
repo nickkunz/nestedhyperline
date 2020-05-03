@@ -106,7 +106,9 @@ def ncv_optimizer(
     trials_list = []
     error_list = []
     coef_list = []
-    
+    model_list = []
+    params_list = []
+
     ## outer k-folds
     k_folds_outer = KFold(
         n_splits = k_outer,
@@ -138,7 +140,7 @@ def ncv_optimizer(
                 shuffle = False
             )
 
-            ## split data into training-and validation test sets
+            ## split data into train and valid sets
             for train_index, valid_index in k_folds_inner.split(x_train_valid):
 
                 ## explanatory features x
@@ -158,7 +160,7 @@ def ncv_optimizer(
                     random_state = random_state
                 )
 
-                ## training  set
+                ## training set
                 model = model.fit(
                     X = x_train,
                     y = y_train
@@ -167,7 +169,7 @@ def ncv_optimizer(
                 ## store coefficients
                 coef = model.coef_
 
-                ## make prediction on validation set
+                ## prediction on validation set
                 y_pred = model.predict(x_valid)
 
                 ## calculate loss
@@ -189,7 +191,7 @@ def ncv_optimizer(
             ## average loss
             error_mean = np.average(error)
 
-            ## return averaged cross-valid scores and status report
+            ## return average cross-valid scores
             return {
                 'loss': error_mean, 
                 'coef': coef,
@@ -199,7 +201,7 @@ def ncv_optimizer(
         ## record results
         trials = Trials()
 
-        ## conduct bayesian optimization, inner loop cross-valid
+        ## conduct bayesian optimization, inner cross-valid
         params_opt = fmin(
             fn = obj_func,
             space = params,
@@ -209,7 +211,7 @@ def ncv_optimizer(
             show_progressbar = verbose
         )
 
-        ## modeling method with optimal hyper-params
+        ## model with optimal hyper-params
         model_opt = reg_select(
             method = method,
             params = params_opt,
@@ -225,10 +227,10 @@ def ncv_optimizer(
         ## store coefficients
         coef = model_opt.coef_
 
-        ## make prediction on test set
+        ## prediction on test set
         y_pred = model_opt.predict(x_test)
 
-        ## calculate loss
+        ## calculate loss results
         if loss == "root mean squared error" or loss == "rmse":
 
             ## squared root loss
@@ -248,18 +250,20 @@ def ncv_optimizer(
                 )
             )
 
-        ## store outer cross-valid results
+        ## outer cross-valid results
+        model_list.append(model_opt)
+        params_list.append(params_opt)
         trials_list.append(trials)
         coef_list.append(coef)
 
     ## custom regression object
     return RegressResults(
         y = y,
-        model = model_opt,
-        params = params_opt,
-        coef_list = coef_list,
+        model = model_list,
+        params = params_list,
         trials_list = trials_list,
         error_list = error_list,
+        coef_list = coef_list,
         standardize = standardize,
         k_outer = k_outer,
         n_evals = n_evals
