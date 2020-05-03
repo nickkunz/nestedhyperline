@@ -10,7 +10,7 @@ import numpy as np
 ## store regression results
 class RegressResults():
     def __init__(self, y, model, params, 
-                 coef_list, trials_list, error_list,
+                 trials_list, error_list, coef_list,
                  standardize, k_outer, n_evals):
 
         """
@@ -23,9 +23,9 @@ class RegressResults():
         self.y = y
         self.model = model
         self.params = params
-        self.coef_list = coef_list
         self.trials_list = trials_list
         self.error_list = error_list
+        self.coef_list = coef_list
         self.standardize = standardize
         self.k_outer = k_outer
         self.n_evals = n_evals
@@ -40,3 +40,5 @@ class RegressResults():
         )
 
         return error_mean
+    
+    ## 
