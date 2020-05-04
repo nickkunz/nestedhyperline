@@ -1,7 +1,7 @@
 ## load libraries
 import random as rd
 from sklearn.linear_model import ElasticNet
-from nestedhyperline.reg_params import net_params
+from nestedhyperline.regular_params import net_params
 from nestedhyperline.argument_quality import ArgumentQuality
 from nestedhyperline.ncv_optimizer import ncv_optimizer
 
@@ -95,11 +95,11 @@ def elastic_ncv_regressor(
         verbose = verbose
     )
 
-    ## initiate modeling method
+    ## initiate model
     method = ElasticNet
     params = net_params()
 
-    ## nested cross-valid bayesian hyper-param optimization
+    ## nested cross-valid bayesian optimization
     ncv_results = ncv_optimizer(
 
         ## main func args
@@ -118,6 +118,5 @@ def elastic_ncv_regressor(
         params = params
     )
 
-    ## regression results object
+    ## regression results
     return ncv_results
-

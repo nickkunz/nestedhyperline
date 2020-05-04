@@ -1,7 +1,7 @@
 ## load libraries
 import random as rd
 from sklearn.linear_model import Ridge
-from nestedhyperline.reg_params import reg_params
+from nestedhyperline.regular_params import reg_params
 from nestedhyperline.argument_quality import ArgumentQuality
 from nestedhyperline.ncv_optimizer import ncv_optimizer
 
@@ -94,11 +94,11 @@ def ridge_ncv_regressor(
         verbose = verbose
     )
 
-    ## initiate modeling method
+    ## initiate model
     method = Ridge
     params = reg_params()
 
-    ## nested cross-valid bayesian hyper-param optimization
+    ## nested cross-valid bayesian optimization
     ncv_results = ncv_optimizer(
 
         ## main func args
@@ -117,5 +117,5 @@ def ridge_ncv_regressor(
         params = params
     )
 
-    ## regression results object
+    ## regression results
     return ncv_results
