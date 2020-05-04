@@ -7,9 +7,12 @@ import matplotlib.cm as cm
 import seaborn as sns
 import numpy as np
 
+## internal
+from nestedhyperline.plot_prep import plot_prep
+
 ## store regression results
 class RegressResults():
-    def __init__(self, y, model, params, 
+    def __init__(self, y, columns, model, params, 
                  trials_list, error_list, coef_list,
                  standardize, k_outer, n_evals):
 
@@ -21,6 +24,7 @@ class RegressResults():
         """
 
         self.y = y
+        self.columns = columns
         self.model = model
         self.params = params
         self.trials_list = trials_list
