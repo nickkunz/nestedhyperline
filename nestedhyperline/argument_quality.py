@@ -9,7 +9,8 @@ class ArgumentQuality():
         """
         Conducts input checks on arguments found in regressor functions:
         ridge_ncv_regressor(), lasso_ncv_regressor(), and elastic_ncv_regressor().
-        Ensure proper usage and execution. This class is intended to raise errors
+        
+        Ensures proper usage and execution. This class is intended to raise errors
         if invalid inputs are passed through the regressor function arguments.
         """
 
