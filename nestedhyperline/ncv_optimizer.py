@@ -259,7 +259,7 @@ def ncv_optimizer(
     ## custom regression object
     return RegressResults(
         y = y,
-        columns = data.columns,
+        cols = column_names,
         model = model_list,
         params = params_list,
         trials_list = trials_list,
