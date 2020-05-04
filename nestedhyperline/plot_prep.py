@@ -4,7 +4,7 @@ import matplotlib.cm as cm
 import numpy as np
 
 ## plot pre-processor
-def plot_prep(k_outer, n_evals, standardize, results):
+def plot_prep(trials_list, params, k_outer, n_evals, standardize):
 
     """ Pre-processes the regression results for all plots. """
 
@@ -35,12 +35,9 @@ def plot_prep(k_outer, n_evals, standardize, results):
         i_coef = [i]
 
         for j in range(n_evals):
-            i_lamb.append(results.trials_list[i].trials[j]
-                ['misc']['vals']['alpha'][0])
-            i_loss.append(results.trials_list[i].trials[j]
-                ['result']['loss'])
-            i_coef.append(results.trials_list[i].trials[j]
-                ['result']['coef'])
+            i_lamb.append(trials_list[i].trials[j]['misc']['vals']['alpha'][0])
+            i_loss.append(trials_list[i].trials[j]['result']['loss'])
+            i_coef.append(trials_list[i].trials[j]['result']['coef'])
         
         lamb_list.append(i_lamb)
         loss_list.append(i_loss)
@@ -51,9 +48,7 @@ def plot_prep(k_outer, n_evals, standardize, results):
         coef_list[i].pop(0)
 
         ## lambda test list
-        lamb_list_test.append(
-            results.params[i].get('alpha')
-        )
+        lamb_list_test.append(params[i].get('alpha'))
 
         ## legend labels
         leg_lines.append(ln.Line2D(
@@ -64,9 +59,7 @@ def plot_prep(k_outer, n_evals, standardize, results):
             )
         )
 
-        leg_labels.append(
-            "Outer K-Fold {k}".format(k = i + 1)
-        )
+        leg_labels.append("Outer K-Fold {k}".format(k = i + 1))
 
     ## average lambda and trian-valid error
     loss_mean = list(np.mean(a = loss_list, axis = 0))
@@ -84,7 +77,7 @@ def plot_prep(k_outer, n_evals, standardize, results):
     lamb_mean_test = np.mean(lamb_list_test)
 
     ## elastic-net alpha list
-    if len(results.trials_list[i].trials[j]['misc']['vals']) == 2:
+    if len(trials_list[i].trials[j]['misc']['vals']) == 2:
         alpha_list = []
         alpha_list_test = []
 
@@ -92,16 +85,14 @@ def plot_prep(k_outer, n_evals, standardize, results):
             i_alpha = [i]
 
             for j in range(n_evals):
-                i_alpha.append(results.trials_list[i].trials[j]
+                i_alpha.append(trials_list[i].trials[j]
                     ['misc']['vals']['l1_ratio'][0])
 
             alpha_list.append(i_alpha)
             alpha_list[i].pop(0)
 
             ## alpha test list
-            alpha_list_test.append(
-                results.params[i].get('l1_ratio')
-            )
+            alpha_list_test.append(params[i].get('l1_ratio'))
 
         ## average trian-valid alpha
         alpha_mean = list(np.mean(a = alpha_list, axis = 0))
