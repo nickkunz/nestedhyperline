@@ -4,7 +4,7 @@ import matplotlib.cm as cm
 import numpy as np
 
 ## plot pre-processor
-def plt_prep(k_outer, n_evals, standardize, results):
+def plot_prep(k_outer, n_evals, standardize, results):
 
     """ Pre-processes the regression results for all plots. """
 
