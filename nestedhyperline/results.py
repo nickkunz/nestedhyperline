@@ -48,13 +48,6 @@ class RegressResults():
     ## plot convergence of lambda across outer k-folds
     def plot_lambda(self,
 
-        ## pre-process args
-        trials_list = trials_list,
-        params = pararms,
-        k_outer = k_outer,
-        n_evals = n_evals,
-        standardize = standardize,
-
         ## settings args
         lw_dot = 1.30,
         lw_sld = 1.1,
@@ -66,11 +59,11 @@ class RegressResults():
 
         ## plot pre-processor
         plt_data = plot_prep(
-            trials_list = trials_list,
-            params = pararms,
-            k_outer = k_outer,
-            n_evals = n_evals,
-            standardize = standardize
+            trials_list = self.trials_list,
+            params = self.params,
+            k_outer = self.k_outer,
+            n_evals = self.n_evals,
+            standardize = self.standardize
         )
 
         ## style
@@ -110,14 +103,14 @@ class RegressResults():
         )
 
         ax.set_xlim(
-            left = -(n_evals * 0.010), 
-            right = n_evals + (n_evals * 0.010)
+            left = -(self.n_evals * 0.010), 
+            right = self.n_evals + (self.n_evals * 0.010)
         )
 
         ## bayesian optimization
-        for i in range(k_outer):
+        for i in range(self.k_outer):
             ax.scatter(
-                x = range(n_evals),
+                x = range(self.n_evals),
                 y = plt_data['lamb_list'][i],
                 color = plt_data['colors'][i], ## dot colors
                 alpha = 0.75,  ## dot opacity
