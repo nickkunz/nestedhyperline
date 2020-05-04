@@ -61,6 +61,30 @@ def plot_prep(trials_list, params, k_outer, n_evals, standardize):
 
         leg_labels.append("Outer K-Fold {k}".format(k = i + 1))
 
+    ## legend label lines
+    leg_lines.extend([
+        ln.Line2D(
+            xdata = [0],
+            ydata = [0],
+            linewidth = 1.30,
+            color = 'black',
+            linestyle = 'dotted'
+            ),
+        ln.Line2D(
+            xdata = [0],
+            ydata = [0],
+            linewidth = 1.1,
+            color = 'black'
+            )
+        ]
+    )
+
+    leg_labels.extend([
+        'Min Avg Test Err',
+        'Min Avg Train Err'
+        ]
+    )
+
     ## average lambda and trian-valid error
     loss_mean = list(np.mean(a = loss_list, axis = 0))
     lamb_mean = list(np.mean(a = lamb_list, axis = 0))
@@ -75,6 +99,20 @@ def plot_prep(trials_list, params, k_outer, n_evals, standardize):
 
     ## lowest test lambda
     lamb_mean_test = np.mean(lamb_list_test)
+
+    ## pre-processed plot data
+    plot_data = {
+        'colors': colors,
+        'loss_list': loss_list,
+        'coef_list': coef_list,
+        'lamb_min': lamb_min,
+        'lamb_max': lamb_max,
+        'lamb_list': lamb_list,
+        'lamb_mean_min': lamb_mean_min,
+        'lamb_mean_test': lamb_mean_test,
+        'leg_lines': leg_lines,
+        'leg_labels': leg_labels,
+    }
 
     ## elastic-net alpha list
     if len(trials_list[i].trials[j]['misc']['vals']) == 2:
@@ -108,43 +146,23 @@ def plot_prep(trials_list, params, k_outer, n_evals, standardize):
         ## lowest test alpha
         alpha_mean_test = np.mean(alpha_list_test)
 
-    ## legend label lines
-    leg_lines.extend([
-        ln.Line2D(
-            xdata = [0],
-            ydata = [0],
-            linewidth = 1.30,
-            color = 'black',
-            linestyle = 'dotted'
-            ),
-        ln.Line2D(
-            xdata = [0],
-            ydata = [0],
-            linewidth = 1.1,
-            color = 'black'
-            )
-        ]
-    )
-
-    leg_labels.extend([
-        'Min Avg Test Err',
-        'Min Avg Train Err'
-        ]
-    )
+        plot_data = {
+            'colors': colors,
+            'loss_list': loss_list,
+            'coef_list': coef_list,
+            'lamb_min': lamb_min,
+            'lamb_max': lamb_max,
+            'lamb_list': lamb_list,
+            'lamb_mean_min': lamb_mean_min,
+            'lamb_mean_test': lamb_mean_test,
+            'alpha_min': alpha_min,
+            'alpha_max': alpha_max,
+            'alpha_list': alpha_list,
+            'alpha_mean_min': alpha_mean_min,
+            'alpha_mean_test': alpha_mean_test,
+            'leg_lines': leg_lines,
+            'leg_labels': leg_labels,
+        }
 
     ## pre-process results
-    return {
-        'colors': colors,
-        'lamb_min': lamb_min,
-        'lamb_max': lamb_max,
-        'lamb_list': lamb_list,
-        'alpha_min': alpha_min,
-        'alpha_max': alpha_max,
-        'alpha_list': alpha_list,
-        'leg_lines': leg_lines,
-        'leg_labels': leg_labels,
-        'lamb_mean_min': lamb_mean_min,
-        'lamb_mean_test': lamb_mean_test,
-        'alpha_mean_min': alpha_mean_min,
-        'alpha_mean_test': alpha_mean_test
-    }
+    return plot_data
