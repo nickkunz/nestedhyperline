@@ -54,15 +54,17 @@ results = regressors.lasso_ncv_regressor(
     loss = 'rmse',
     k_inner = 5,
     k_outer = 5,
-    n_evals = 100
+    n_evals = 1000
 )
 
-## preview results
+## preview performance
 results.error_mean()
 
-## model and params
-model = results.model
-params = results.params
+## preview plots
+results.plot_error_mean()
+results.plot_lambda()
+results.plot_regular()
+results.plot_coef()
 ```
 
 ## License
