@@ -1,3 +1,5 @@
+nestedhyperline/__pycache__
+nestedhyperline/regressors/__pycache__
 build/
 dist/
 nestedhyperline.egg-info/
