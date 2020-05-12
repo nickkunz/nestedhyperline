@@ -6,12 +6,10 @@ import warnings as wn
 ## mested k-fold cross-validation
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import StandardScaler
 
 ## bayesian hyper-parameter optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
-
-## performance evaluation
+from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 
 ## internal
@@ -29,9 +27,9 @@ def ncv_optimizer(
     method, params
     ):
 
-    """
-    The main underlying function designed for rapid prototyping. Quickly obtains 
-    prediction results by compromising implementation details and flexibility.
+    """ The main underlying function designed for rapid prototyping. 
+    Quickly obtains prediction results by compromising implementation 
+    details and flexibility.
 
     Applicable only to linear regression problems. Unifies three important 
     supervised learning techniques for structured data:
@@ -40,13 +38,13 @@ def ncv_optimizer(
     2) Bayesian Optimization (efficient hyper-parameter tuning)
     3) Linear Regularization (reduce model complexity)
 
-    Bayesian hyper-parameter optimization is conducted utilizing Tree Prezen
-    Estimation. Linear Regularization is conducted utilizing specified method.
+    Bayesian hyper-parameter optimization is conducted utilizing 
+    Tree PrezenEstimation. Linear Regularization is conducted utilizing 
+    specified method.
 
     Returns custom regression object containing:
     - Root Mean Squared Error (RMSE) or other specified regression metric
-    - List of RMSE on outer-folds
-    """
+    - List of RMSE on outer-folds """
 
     ## suppress warning messages
     wn.filterwarnings(
@@ -109,7 +107,7 @@ def ncv_optimizer(
     model_list = []
     params_list = []
 
-    ## outer k-folds
+    ## outer k-fold specification
     k_folds_outer = KFold(
         n_splits = k_outer,
         shuffle = False
@@ -169,7 +167,7 @@ def ncv_optimizer(
                 ## store coefficients
                 coef = model.coef_
 
-                ## prediction on validation set
+                ## predict on validation set
                 y_pred = model.predict(x_valid)
 
                 ## calculate loss
@@ -191,7 +189,7 @@ def ncv_optimizer(
             ## average loss
             error_mean = np.average(error)
 
-            ## return average cross-valid scores
+            ## return average cross-valid loss
             return {
                 'loss': error_mean, 
                 'coef': coef,
@@ -201,7 +199,7 @@ def ncv_optimizer(
         ## record results
         trials = Trials()
 
-        ## conduct bayesian optimization, inner cross-valid
+        ## conduct bayesian optimization
         params_opt = fmin(
             fn = obj_func,
             space = params,
@@ -227,10 +225,10 @@ def ncv_optimizer(
         ## store coefficients
         coef = model_opt.coef_
 
-        ## prediction on test set
+        ## predict on test set
         y_pred = model_opt.predict(x_test)
 
-        ## calculate loss results
+        ## calculate loss
         if loss == "root mean squared error" or loss == "rmse":
 
             ## squared root loss
@@ -256,7 +254,7 @@ def ncv_optimizer(
         trials_list.append(trials)
         coef_list.append(coef)
 
-    ## custom regression object
+    ## custom object
     return RegressResults(
         y = y,
         cols = column_names,
