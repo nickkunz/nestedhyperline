@@ -416,7 +416,7 @@ class RegressResults():
                 lamb_list_sort[i],
                 coef_list_sort[i],
                 color = plt_data['colors'][i],  ## line colors
-                alpha = 0.50  ## line opacity
+                alpha = 0.40  ## line opacity
             )
 
         ## plot lowest average test set error line
