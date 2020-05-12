@@ -24,3 +24,12 @@ NestedHyperLine v0.0.2: 2020-04-05
 NestedHyperLine v0.0.3: 2020-04-05
 ==========================
 - Update loss func strings
+
+NestedHyperLine v0.0.4: 2020-05-12
+==========================
+- Store coefficients
+- Standardize coefficients
+- Add coefficient regularization plot
+- Add bayesian optimization plot
+- Add test error plot
+- Add coefficient bar plot

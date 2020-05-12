@@ -1,7 +1,7 @@
 ## load libraries
 import random as rd
 from sklearn.linear_model import ElasticNet
-from nestedhyperline.reg_params import net_params
+from nestedhyperline.regular_params import net_params
 from nestedhyperline.argument_quality import ArgumentQuality
 from nestedhyperline.ncv_optimizer import ncv_optimizer
 
@@ -10,11 +10,12 @@ def elastic_ncv_regressor(
 
     data,
     y,
-    loss = "root mean squared error",
+    loss = "rmse",
     k_outer = 5,
     k_inner = 5,
-    n_evals = 25,
-    seed = rd.randint(0, 9999),
+    n_evals = 1000,
+    random_state = rd.randint(0, 9999),
+    standardize = True,
     verbose = True
     ):
 
@@ -68,9 +69,13 @@ def elastic_ncv_regressor(
     - number of evals for bayesian optimization
     - default 25
 
-    seed:
+    random_state:
     - pos int
     - fix to reproduce results
+
+    standardize:
+    - bool
+    - standardizes data
 
     verbose:
     - bool
@@ -85,15 +90,16 @@ def elastic_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose
     )
 
-    ## initiate modeling method
+    ## initiate model
     method = ElasticNet
     params = net_params()
 
-    ## nested cross-valid bayesian hyper-param optimization
+    ## nested cross-valid bayesian optimization
     ncv_results = ncv_optimizer(
 
         ## main func args
@@ -103,7 +109,8 @@ def elastic_ncv_regressor(
         k_outer = k_outer,
         k_inner = k_inner,
         n_evals = n_evals,
-        seed = seed,
+        random_state = random_state,
+        standardize = standardize,
         verbose = verbose,
 
         ## pred func args
@@ -111,5 +118,5 @@ def elastic_ncv_regressor(
         params = params
     )
 
-    ## regression results object
+    ## regression results
     return ncv_results

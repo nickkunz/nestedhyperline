@@ -1,5 +1,6 @@
 ## load libraries
 import numpy as np
+import pandas as pd
 import warnings as wn
 
 ## mested k-fold cross-validation
@@ -8,8 +9,7 @@ from sklearn.model_selection import cross_val_score
 
 ## bayesian hyper-parameter optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
-
-## performance evaluation
+from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 
 ## internal
@@ -20,15 +20,16 @@ from nestedhyperline.regressor_select import reg_select
 def ncv_optimizer(
 
     ## main func args
-    data, y, loss, k_outer, k_inner, n_evals, seed, verbose,
+    data, y, loss, k_outer, k_inner, n_evals, 
+    random_state, standardize, verbose,
 
     ## pred func args
     method, params
     ):
 
-    """
-    The main underlying function designed for rapid prototyping. Quickly obtains 
-    prediction results by compromising implementation details and flexibility.
+    """ The main underlying function designed for rapid prototyping. 
+    Quickly obtains prediction results by compromising implementation 
+    details and flexibility.
 
     Applicable only to linear regression problems. Unifies three important 
     supervised learning techniques for structured data:
@@ -37,13 +38,13 @@ def ncv_optimizer(
     2) Bayesian Optimization (efficient hyper-parameter tuning)
     3) Linear Regularization (reduce model complexity)
 
-    Bayesian hyper-parameter optimization is conducted utilizing Tree Prezen
-    Estimation. Linear Regularization is conducted utilizing specified method.
+    Bayesian hyper-parameter optimization is conducted utilizing 
+    Tree PrezenEstimation. Linear Regularization is conducted utilizing 
+    specified method.
 
     Returns custom regression object containing:
     - Root Mean Squared Error (RMSE) or other specified regression metric
-    - List of RMSE on outer-folds
-    """
+    - List of RMSE on outer-folds """
 
     ## suppress warning messages
     wn.filterwarnings(
@@ -90,20 +91,29 @@ def ncv_optimizer(
         drop = True
     )
 
+    ## standardize explanatory features x
+    if standardize == True:
+        column_names = data.columns
+        data = StandardScaler().fit_transform(data)
+        data = pd.DataFrame(
+            data = data,
+            columns = column_names
+        )
+
     ## test set prediction stores
-    y_test_list = []
-    y_pred_list = []
     trials_list = []
     error_list = []
     coef_list = []
-    
-    ## outer k-folds
+    model_list = []
+    params_list = []
+
+    ## outer k-fold specification
     k_folds_outer = KFold(
         n_splits = k_outer,
         shuffle = False
     )
 
-    ## split data into training-validation and test sets
+    ## split data into train-valid and test sets
     for train_valid_index, test_index in k_folds_outer.split(data):
 
         ## explanatory features x
@@ -128,7 +138,7 @@ def ncv_optimizer(
                 shuffle = False
             )
 
-            ## split data into training-and validation test sets
+            ## split data into train and valid sets
             for train_index, valid_index in k_folds_inner.split(x_train_valid):
 
                 ## explanatory features x
@@ -145,10 +155,10 @@ def ncv_optimizer(
                 model = reg_select(
                     method = method,
                     params = params,
-                    seed = seed
+                    random_state = random_state
                 )
 
-                ## training  set
+                ## training set
                 model = model.fit(
                     X = x_train,
                     y = y_train
@@ -157,7 +167,7 @@ def ncv_optimizer(
                 ## store coefficients
                 coef = model.coef_
 
-                ## make prediction on validation set
+                ## predict on validation set
                 y_pred = model.predict(x_valid)
 
                 ## calculate loss
@@ -179,7 +189,7 @@ def ncv_optimizer(
             ## average loss
             error_mean = np.average(error)
 
-            ## return averaged cross-valid scores and status report
+            ## return average cross-valid loss
             return {
                 'loss': error_mean, 
                 'coef': coef,
@@ -189,7 +199,7 @@ def ncv_optimizer(
         ## record results
         trials = Trials()
 
-        ## conduct bayesian optimization, inner loop cross-valid
+        ## conduct bayesian optimization
         params_opt = fmin(
             fn = obj_func,
             space = params,
@@ -199,11 +209,11 @@ def ncv_optimizer(
             show_progressbar = verbose
         )
 
-        ## modeling method with optimal hyper-params
+        ## model with optimal hyper-params
         model_opt = reg_select(
             method = method,
             params = params_opt,
-            seed = seed
+            random_state = random_state
         )
 
         ## train on entire training-valid set
@@ -215,12 +225,12 @@ def ncv_optimizer(
         ## store coefficients
         coef = model_opt.coef_
 
-        ## make prediction on test set
+        ## predict on test set
         y_pred = model_opt.predict(x_test)
 
         ## calculate loss
-        if loss == "root_mean_squared_error":
-            
+        if loss == "root mean squared error" or loss == "rmse":
+
             ## squared root loss
             error_list.append(
                 loss_func(
@@ -238,18 +248,22 @@ def ncv_optimizer(
                 )
             )
 
-        ## store outer cross-valid results
+        ## outer cross-valid results
+        model_list.append(model_opt)
+        params_list.append(params_opt)
         trials_list.append(trials)
-        y_test_list.append(y_test)
-        y_pred_list.append(y_pred)
         coef_list.append(coef)
 
-    ## custom regression object
+    ## custom object
     return RegressResults(
-        model = model_opt,
-        params = params_opt,
-        coef_list = coef_list,
+        y = y,
+        cols = column_names,
+        model = model_list,
+        params = params_list,
         trials_list = trials_list,
-        y_pred_list = y_pred_list,
         error_list = error_list,
+        coef_list = coef_list,
+        standardize = standardize,
+        k_outer = k_outer,
+        n_evals = n_evals
     )
