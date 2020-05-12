@@ -13,7 +13,7 @@ def ridge_ncv_regressor(
     loss = "rmse",
     k_outer = 5,
     k_inner = 5,
-    n_evals = 25,
+    n_evals = 1000,
     random_state = rd.randint(0, 9999),
     standardize = True,
     verbose = True
