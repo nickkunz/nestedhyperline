@@ -236,7 +236,7 @@ def ncv_optimizer(
                 loss_func(
                     y_true = y_test,
                     y_pred = y_pred,
-                    squared = False  ## true returns mse, false returns rmse
+                    squared = False  ## false returns rmse
                 )
             )
         else:
