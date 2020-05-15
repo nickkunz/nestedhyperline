@@ -50,8 +50,9 @@ class RegressResults():
 
         ## viz settings
         lw_dot = 1.30,
-        lw_sld = 1.1,
-        dt_opa = 
+        lw_sld = 1.10,
+        dt_opa = 0.50,
+        dt_sze = 10,
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,
@@ -109,8 +110,8 @@ class RegressResults():
                 x = plt_data['lamb_list'][i],
                 y = plt_data['loss_list'][i],
                 color = plt_data['colors'][i], ## dot colors
-                alpha = 0.50,  ## dot opacity
-                s = 10  ## dot size
+                alpha = dt_opa,  ## dot opacity
+                s = dt_sze  ## dot size
             )
 
         ## lowest average test set error line
@@ -144,7 +145,9 @@ class RegressResults():
 
         ## viz settings
         lw_dot = 1.30,
-        lw_sld = 1.1,
+        lw_sld = 1.10,
+        dt_opa = 0.75,
+        dt_sze = 12,
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,
@@ -207,8 +210,8 @@ class RegressResults():
                 x = range(self.n_evals),
                 y = plt_data['lamb_list'][i],
                 color = plt_data['colors'][i], ## dot colors
-                alpha = 0.75,  ## dot opacity
-                s = 12  ## dot size
+                alpha = dt_opa,  ## dot opacity
+                s = dt_sze  ## dot size
             )
 
         ## lowest average test error line
@@ -242,7 +245,9 @@ class RegressResults():
 
         ## viz settings
         lw_dot = 1.30,
-        lw_sld = 1.1,
+        lw_sld = 1.10,
+        dt_opa = 0.75,
+        dt_sze = 12,
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,
@@ -301,8 +306,8 @@ class RegressResults():
                 x = range(self.n_evals),
                 y = plt_data['alpha_list'][i],
                 color = plt_data['colors'][i],  ## dot colors
-                alpha = 0.75,  ## dot opacity
-                s = 12  ## dot size
+                alpha = dt_opa,  ## dot opacity
+                s = dt_sze  ## dot size
             )
 
         ## lowest average test error line
@@ -336,7 +341,8 @@ class RegressResults():
 
         ## viz settings
         lw_dot = 1.30,
-        lw_sld = 1.1,
+        lw_sld = 1.10,
+        ln_opa = 0.40,
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,
@@ -417,7 +423,7 @@ class RegressResults():
                 lamb_list_sort[i],
                 coef_list_sort[i],
                 color = plt_data['colors'][i],  ## line colors
-                alpha = 0.40  ## line opacity
+                alpha = ln_opa  ## line opacity
             )
 
         ## plot lowest average test set error line
@@ -452,6 +458,7 @@ class RegressResults():
         ## viz settings
         lw_dot = 1.30,
         lw_sld = 1.1,
+        ln_wdt = 0,
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,
@@ -549,7 +556,7 @@ class RegressResults():
                 width = bar_width,
                 facecolor = plt_data['colors'][i], 
                 edgecolor = plt_data['colors'][i],
-                linewidth = 0,
+                linewidth = ln_wdt,
             )
 
         ## legend
