@@ -7,7 +7,7 @@ import warnings as wn
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 
-## bayesian hyper-parameter optimization and modeling
+## bayesian optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
 from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
@@ -16,7 +16,7 @@ from sklearn import metrics
 from nestedhyperline.results import RegressResults
 from nestedhyperline.regressor_select import reg_select
 
-## nested cross-validation and bayesian hyper-param optimization
+## nested cross-validation and bayesian optimization
 def ncv_optimizer(
 
     ## main func args
@@ -27,9 +27,8 @@ def ncv_optimizer(
     method, params
     ):
 
-    """ The main underlying function designed for rapid prototyping. 
-    Quickly obtains prediction results by compromising implementation 
-    details and flexibility.
+    """ The main underlying function. Quickly obtains prediction results 
+    by compromising implementation details and flexibility.
 
     Applicable only to linear regression problems. Unifies three important 
     supervised learning techniques for structured data:
@@ -38,13 +37,13 @@ def ncv_optimizer(
     2) Bayesian Optimization (efficient hyper-parameter tuning)
     3) Linear Regularization (reduce model complexity)
 
-    Bayesian hyper-parameter optimization is conducted utilizing 
-    Tree PrezenEstimation. Linear Regularization is conducted utilizing 
+    Bayesian hyper-parameter optimization is conducted utilizing Tree 
+    Prezen Estimation. Linear Regularization is conducted utilizing 
     specified method.
 
     Returns custom regression object containing:
     - Root Mean Squared Error (RMSE) or other specified regression metric
-    - List of RMSE on outer-folds """
+    - List of RMSE on Outer K-Folds """
 
     ## suppress warning messages
     wn.filterwarnings(
@@ -57,7 +56,7 @@ def ncv_optimizer(
         category = FutureWarning
     )
 
-    ## set loss function
+    ## loss function
     if loss == "explained variance" or loss == "ev":
         loss_func = metrics.explained_variance_score
 
@@ -167,7 +166,7 @@ def ncv_optimizer(
                 ## store coefficients
                 coef = model.coef_
 
-                ## predict on validation set
+                ## predict on valid set
                 y_pred = model.predict(x_valid)
 
                 ## calculate loss
@@ -177,7 +176,7 @@ def ncv_optimizer(
                     error = loss_func(
                         y_true = y_valid,
                         y_pred = y_pred,
-                        squared = True,
+                        squared = False,  ## false returns rmse
                     )
                 else:
                     ## squared loss
@@ -216,7 +215,7 @@ def ncv_optimizer(
             random_state = random_state
         )
 
-        ## train on entire training-valid set
+        ## train on entire train-valid set
         model_opt = model_opt.fit(
             X = x_train_valid,
             y = y_train_valid

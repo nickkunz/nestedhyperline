@@ -6,7 +6,7 @@ import numpy as np
 ## plot pre-processor
 def plot_prep(trials_list, params, k_outer, n_evals, standardize):
 
-    """ Pre-processes the regression results for all plots. """
+    """ Pre-processes the regression results data for all plots. """
 
     ## assign color map
     if k_outer <= 10:
@@ -15,7 +15,7 @@ def plot_prep(trials_list, params, k_outer, n_evals, standardize):
         name = 'tab20'
     if k_outer > 20:
         raise ValueError(
-            'Outer k-fold exceeds 20: plot will not display correctly'
+            'Outer K-Fold exceeds 20: plot will not display correctly'
             )
     
     ## create color map

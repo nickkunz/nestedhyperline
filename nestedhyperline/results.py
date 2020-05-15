@@ -16,9 +16,9 @@ class RegressResults():
                  standardize, k_outer, n_evals):
 
         """ Calculates the average of all Outer K-Fold Cross-Validation 
-        specified errors (Mean Squared Error, Mean Absolute Error, etc.), 
-        as well as all the associated plots. Returns to main function 
-        ncv_optimizer(). """
+        specified loss function errors (Mean Squared Error, Mean Absolute 
+        Error, etc.), as well as all the associated plots. Returns to main 
+        function ncv_optimizer(). """
 
         self.y = y
         self.cols = cols
@@ -51,6 +51,7 @@ class RegressResults():
         ## viz settings
         lw_dot = 1.30,
         lw_sld = 1.1,
+        dt_opa = 
         plt_hgt = 9,
         plt_wdt = 20,
         ax_fnt_sze = 11,

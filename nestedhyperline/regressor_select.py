@@ -1,8 +1,12 @@
 ## load libraries
 from sklearn.linear_model import Ridge, Lasso, ElasticNet
 
-## boosting method (xgboost, lightgbm, catboost)
+## regularization method
 def reg_select(method, params, random_state):
+
+    """ Selects the specified linear regularization method and determines
+    the maximum number of Bayesian Optimization iterations. Choose between 
+    Ridge, LASSO, and Elastic-Net. """
 
     ## ridge and lasso
     if method in [Ridge, Lasso]:
@@ -21,8 +25,9 @@ def reg_select(method, params, random_state):
 
         )
 
-    ## lightgbm
+    ## elastic-net
     if method == ElasticNet:
+
         ## hyper-param specification
         method_params = method(
 
@@ -37,5 +42,4 @@ def reg_select(method, params, random_state):
             random_state = random_state
         )
 
-    ## returns boosting method and params
     return method_params

@@ -2,11 +2,11 @@
 import numpy as np
 from hyperopt import hp
 
-## regularization hyper-params
+## ridge and lasso hyper-params
 def reg_params():
     
-    """ utilized for bayesian hyper-parameter optimization, returns
-    ridge and lasso regression parameter ranges (search space) """
+    """ Utilized for Bayesian Optimization. Returns Ridge and 
+    LASSO regression parameter ranges (search space). """
     
     reg_params = {
         
@@ -23,8 +23,8 @@ def reg_params():
 ## elastic-net hyper-params
 def net_params():
     
-    """ utilized for bayesian hyper-parameter optimization, returns
-    elastic-net regression parameter ranges (search space) """
+    """ Utilized for Bayesian Optimization. Returns Elastic-Net 
+    regression parameter ranges (search space) """
     
     net_params = {
         
