@@ -58,19 +58,19 @@ class ArgumentQuality():
                ] is False:
                     raise ValueError("'loss' must be an accepted sklearn scoring param")
 
-          ## check for k-fold outer
-          if self.k_outer > len(self.data):
-               raise ValueError("'k_outer' is greater than number of observations (rows)")
+          ## check for outer k-fold
+          if self.k_outer > 20:
+               raise ValueError("'k_outer' must be a positive integer between 2 and 20")
 
           if self.k_outer < 2:
-               raise ValueError("'k_outer' must be a positive integer greater than 1")
+               raise ValueError("'k_outer' must be a positive integer between 2 and 20")
 
-          ## check for k-fold inner
-          if self.k_inner > len(self.data):
-               raise ValueError("'k_inner' is greater than number of observations (rows)")
+          ## check for inner k-fold
+          if self.k_inner > 20:
+               raise ValueError("'k_inner' must be a positive integer between 2 and 20")
 
           if self.k_inner < 2:
-               raise ValueError("'k_inner' must be a positive integer greater than 1")
+               raise ValueError("'k_inner' must be a positive integer between 2 and 20")
 
           ## check for number of evaluations
           if self.n_evals < 1:
