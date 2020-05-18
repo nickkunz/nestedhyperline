@@ -68,7 +68,7 @@ results.plot_regular()
 results.plot_coef()
 ```
 ## Examples
-https://github.com/nickkunz/nestedhyperline/blob/examples/nestedhyperline_example_ridge.ipynb
+https://github.com/nickkunz/nestedhyperline/blob/master/examples/nestedhyperline_example_ridge.ipynb
 
 ## License
 © Nick Kunz, 2019. Licensed under the General Public License v3.0 (GPLv3).
