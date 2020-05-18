@@ -33,3 +33,10 @@ NestedHyperLine v0.0.4: 2020-05-12
 - Add bayesian optimization plot
 - Add test error plot
 - Add coefficient bar plot
+
+NestedHyperLine v0.0.5: 2020-05-17
+==========================
+- Add documentation
+- Correct loss functions
+- Clean code and comments
+- Add plotting custom appearances

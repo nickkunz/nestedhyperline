@@ -35,10 +35,6 @@ def ridge_ncv_regressor(
     Bayesian hyper-parameter optimization is conducted utilizing Tree Prezen
     Estimation. Linear Regularization is conducted utilizing L2 shrinkage.
 
-    Returns custom regression object containing:
-    - Root Mean Squared Error (RMSE) or other specified regression metric
-    - List of RMSE on outer-folds
-
     Arguments:
 
     data:
