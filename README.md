@@ -48,7 +48,7 @@ housing_sklearn = datasets.load_boston()
 housing = pandas.DataFrame(housing_sklearn.data, columns = housing_sklearn.feature_names)
 housing['target'] = pandas.Series(housing_sklearn.target)
 
-## conduct nestedhyperboost
+## conduct lasso regression
 results = regressors.lasso_ncv_regressor(
     data = housing,
     y = 'target',
@@ -67,8 +67,18 @@ results.plot_lambda()
 results.plot_regular()
 results.plot_coef()
 ```
+
 ## Examples
 https://github.com/nickkunz/nestedhyperline/blob/master/examples/nestedhyperline_example_ridge.ipynb
+
+## Visualizations
+<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/bay_opt.png"><p>
+
+<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/lambda.png"><p>
+
+<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/regular.png"><p>
+
+<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/coef.png">
 
 ## License
 © Nick Kunz, 2019. Licensed under the General Public License v3.0 (GPLv3).
