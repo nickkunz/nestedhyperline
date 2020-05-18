@@ -71,15 +71,6 @@ results.plot_coef()
 ## Examples
 https://github.com/nickkunz/nestedhyperline/blob/master/examples/nestedhyperline_example_ridge.ipynb
 
-## Visualizations
-<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/bay_opt.png"><p>
-
-<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/lambda.png"><p>
-
-<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/regular.png"><p>
-
-<img src="https://github.com/nickkunz/nestedhyperline/blob/dev/media/plots/coef.png">
-
 ## License
 © Nick Kunz, 2019. Licensed under the General Public License v3.0 (GPLv3).
 
