@@ -48,7 +48,7 @@ housing_sklearn = datasets.load_boston()
 housing = pandas.DataFrame(housing_sklearn.data, columns = housing_sklearn.feature_names)
 housing['target'] = pandas.Series(housing_sklearn.target)
 
-## conduct nestedhyperboost
+## conduct lasso regression
 results = regressors.lasso_ncv_regressor(
     data = housing,
     y = 'target',
