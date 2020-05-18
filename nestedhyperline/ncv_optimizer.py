@@ -90,9 +90,11 @@ def ncv_optimizer(
         drop = True
     )
 
+    ## store feature names
+    column_names = data.columns
+    
     ## standardize explanatory features x
     if standardize == True:
-        column_names = data.columns
         data = StandardScaler().fit_transform(data)
         data = pd.DataFrame(
             data = data,
