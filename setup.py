@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name = 'nestedhyperline',
     version = '0.0.6',
-    description = 'A wrapper for conducting Nested Cross-Validation for Bayesian Optimized Linear Regularization,
+    description = 'A wrapper for conducting Nested Cross-Validation for Bayesian Optimized Linear Regularization',
     long_description = open('README.md').read(),
     long_description_content_type = "text/markdown",
     author = 'Nick Kunz',
