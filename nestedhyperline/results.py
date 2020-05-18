@@ -381,12 +381,12 @@ class RegressResults():
         ## y axis
         if self.standardize is True:
             ax.set_ylabel(
-                ylabel = 'Coefficients',
+                ylabel = 'Standardized Coefficients',
                 fontsize = ax_fnt_sze
             )
         else:
             ax.set_ylabel(
-                ylabel = 'Standardized Coefficients',
+                ylabel = 'Coefficients',
                 fontsize = ax_fnt_sze
             )
 
