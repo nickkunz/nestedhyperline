@@ -15,7 +15,7 @@ A Python implementation that unifies Nested K-Fold Cross-Validation, Bayesian Hy
 ## Features
 1. Consistent syntax across all Linear Regularization methods.
 2. Supported Linear Regularization methods: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">Ridge</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html">Lasso</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html">Elastic-Net</a>.
-3. Returns custom object that includes common performance metrics and plots.
+3. Returns custom object that includes performance metrics and plots.
 4. Developed for readability, maintainability, and future improvement.
 
 ## Requirements
@@ -23,8 +23,9 @@ A Python implementation that unifies Nested K-Fold Cross-Validation, Bayesian Hy
 2. NumPy
 3. Pandas
 4. MatPlotLib
-5. Scikit-Learn
-6. Hyperopt
+5. Seaborn
+6. Scikit-Learn
+7. Hyperopt
 
 ## Installation
 ```python
@@ -43,18 +44,18 @@ from sklearn import datasets
 import pandas
 
 ## load data
-data_sklearn = datasets.load_boston()
-data = pandas.DataFrame(data_sklearn.data, columns = data_sklearn.feature_names)
-data['target'] = pandas.Series(data_sklearn.target)
+housing_sklearn = datasets.load_boston()
+housing = pandas.DataFrame(housing_sklearn.data, columns = housing_sklearn.feature_names)
+housing['target'] = pandas.Series(housing_sklearn.target)
 
 ## conduct nestedhyperboost
 results = regressors.lasso_ncv_regressor(
-    data = data,
+    data = housing,
     y = 'target',
-    loss = 'rmse',
-    k_inner = 5,
-    k_outer = 5,
-    n_evals = 1000
+    loss = 'mse',
+    k_inner = 3,
+    k_outer = 3,
+    n_evals = 300
 )
 
 ## preview performance
@@ -66,6 +67,8 @@ results.plot_lambda()
 results.plot_regular()
 results.plot_coef()
 ```
+## Examples
+https://github.com/nickkunz/nestedhyperline/blob/examples/nestedhyperline_example_ridge.ipynb
 
 ## License
 © Nick Kunz, 2019. Licensed under the General Public License v3.0 (GPLv3).
