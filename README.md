@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/nickkunz/nestedhyperline/blob/master/media/images/nestedhyperline_banner.png">
+  <img src="https://github.com/nickkunz/nestedhyperline/blob/master/media/logos/nestedhyperline_banner.png">
 </div>
 
 ## Nested Cross-Validation for Bayesian Optimized Linear Regularization
