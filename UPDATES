@@ -40,3 +40,9 @@ NestedHyperLine v0.0.5: 2020-05-17
 - Correct loss functions
 - Clean code and comments
 - Add plotting custom appearances
+
+NestedHyperLine v0.0.6: 2020-05-18
+==========================
+- Correct plot labels
+- Correct feature name reference
+- Correct setup install dependencies

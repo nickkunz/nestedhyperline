@@ -67,6 +67,7 @@ results.plot_lambda()
 results.plot_regular()
 results.plot_coef()
 ```
+
 ## Examples
 https://github.com/nickkunz/nestedhyperline/blob/master/examples/nestedhyperline_example_ridge.ipynb
 

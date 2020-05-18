@@ -2,8 +2,8 @@ from setuptools import setup
 
 setup(
     name = 'nestedhyperline',
-    version = '0.0.5',
-    description = 'A wrapper for conducting Nested Cross-Validation with Bayesian Hyper-Parameter Optimized Linear Regularization',
+    version = '0.0.6',
+    description = 'A wrapper for conducting Nested Cross-Validation for Bayesian Optimized Linear Regularization',
     long_description = open('README.md').read(),
     long_description_content_type = "text/markdown",
     author = 'Nick Kunz',
@@ -23,7 +23,7 @@ setup(
         'linear regularization',
         'ridge',
         'lasso',
-        'elasticnet'
+        'elastic net'
     ],
     packages = [
         'nestedhyperline',
@@ -34,6 +34,7 @@ setup(
         'numpy',
         'pandas',
         'matplotlib',
+        'seaborn',
         'sklearn',
         'hyperopt'
     ],
