@@ -170,7 +170,7 @@ def ncv_optimizer(
                 y_pred = model.predict(x_valid)
 
                 ## calculate loss
-                if loss == "root_mean_squared_error" or "rmse":
+                if loss == "root mean squared error" or loss = "rmse":
 
                     ## squared root loss
                     error = loss_func(
