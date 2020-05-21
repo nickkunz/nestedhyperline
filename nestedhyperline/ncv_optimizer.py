@@ -27,18 +27,18 @@ def ncv_optimizer(
     method, params
     ):
 
-    """ The main underlying function. Quickly obtains prediction results 
+    """ The main underlying function. Quickly obtains prediction results
     by compromising implementation details and flexibility.
 
-    Applicable only to linear regression problems. Unifies three important 
+    Applicable only to linear regression problems. Unifies three important
     supervised learning techniques for structured data:
 
     1) Nested K-Fold Cross Validation (minimize bias)
     2) Bayesian Optimization (efficient hyper-parameter tuning)
     3) Linear Regularization (reduce model complexity)
 
-    Bayesian hyper-parameter optimization is conducted utilizing Tree 
-    Prezen Estimation. Linear Regularization is conducted utilizing 
+    Bayesian hyper-parameter optimization is conducted utilizing Tree
+    Prezen Estimation. Linear Regularization is conducted utilizing
     specified method.
 
     Returns custom regression object containing:

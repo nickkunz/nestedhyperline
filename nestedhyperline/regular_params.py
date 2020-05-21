@@ -42,5 +42,5 @@ def net_params():
             high = 1.00
         )
     }
-    
+
     return net_params

@@ -1,6 +1,5 @@
 ## load libraries
 import numpy as np
-import pandas as pd
 import matplotlib.pylab as plt
 import matplotlib.ticker as tkr
 import matplotlib.cm as cm
@@ -15,9 +14,9 @@ class RegressResults():
                  trials_list, error_list, coef_list,
                  standardize, k_outer, n_evals):
 
-        """ Calculates the average of all Outer K-Fold Cross-Validation 
-        specified loss function errors (Mean Squared Error, Mean Absolute 
-        Error, etc.), as well as all the associated plots. Returns to main 
+        """ Calculates the average of all Outer K-Fold Cross-Validation
+        specified loss function errors (Mean Squared Error, Mean Absolute
+        Error, etc.), as well as all the associated plots. Returns to main
         function ncv_optimizer(). """
 
         self.y = y

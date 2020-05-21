@@ -19,8 +19,8 @@ def ridge_ncv_regressor(
     verbose = True
     ):
 
-    """
-    Conducts Ridge L2 Regularization for Linear Regression prediction problems.
+    """ Conducts Ridge L2 Regularization for Linear Regression
+    prediction problems.
 
     Designed for rapid prototyping. Quickly obtains prediction results by
     compromising implementation details and flexibility.

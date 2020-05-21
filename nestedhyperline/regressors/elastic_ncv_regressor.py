@@ -19,8 +19,7 @@ def elastic_ncv_regressor(
     verbose = True
     ):
 
-    """
-    Conducts Elastic-Net L2 and L1 Regularization for Linear Regression
+    """ Conducts Elastic-Net L2 and L1 Regularization for Linear Regression
     prediction problems.
 
     Designed for rapid prototyping. Quickly obtains prediction results by
