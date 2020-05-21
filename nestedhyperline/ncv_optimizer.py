@@ -130,8 +130,8 @@ def ncv_optimizer(
         ## objective function
         def obj_func(params):
 
-            """ objective function to minimize utilizing
-            bayesian hyper-parameter optimization """
+            """ Objective function to minimize utilizing
+            bayesian optimization. """
 
             ## inner k-folds
             k_folds_inner = KFold(
