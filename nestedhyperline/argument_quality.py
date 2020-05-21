@@ -3,7 +3,7 @@ import pandas as pd
 
 ## argument input quality checks for regressor
 class ArgumentQuality():
-     def __init__(self, data, y, loss, k_outer, k_inner, n_evals, 
+     def __init__(self, data, y, loss, k_outer, k_inner, n_evals,
           random_state, standardize, verbose):
 
           """ Conducts input checks on arguments found in regressor

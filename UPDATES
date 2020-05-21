@@ -46,3 +46,7 @@ NestedHyperLine v0.0.6: 2020-05-18
 - Correct plot labels
 - Correct feature name reference
 - Correct setup install dependencies
+
+NestedHyperLine v0.0.7: 2020-05-21
+==========================
+- Clean whitespace

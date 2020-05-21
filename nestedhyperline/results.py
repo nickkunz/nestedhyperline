@@ -8,7 +8,7 @@ from nestedhyperline.plot_prep import plot_prep
 
 ## store regression results
 class RegressResults():
-    def __init__(self, y, cols, model, params, 
+    def __init__(self, y, cols, model, params,
                  trials_list, error_list, coef_list,
                  standardize, k_outer, n_evals):
 

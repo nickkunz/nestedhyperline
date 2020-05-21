@@ -5,7 +5,7 @@ from sklearn.linear_model import Ridge, Lasso, ElasticNet
 def reg_select(method, params, random_state):
 
     """ Selects the specified linear regularization method and determines
-    the maximum number of Bayesian Optimization iterations. Choose between 
+    the maximum number of Bayesian Optimization iterations. Choose between
     Ridge, LASSO, and Elastic-Net. """
 
     ## ridge and lasso

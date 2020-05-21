@@ -17,7 +17,7 @@ def plot_prep(trials_list, params, k_outer, n_evals, standardize):
         raise ValueError(
             'Outer K-Fold exceeds 20: plot will not display correctly'
             )
-    
+
     ## create color map
     colors = cm.get_cmap(name).colors
 

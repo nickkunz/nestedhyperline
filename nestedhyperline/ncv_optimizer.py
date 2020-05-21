@@ -5,7 +5,6 @@ import warnings as wn
 
 ## mested k-fold cross-validation
 from sklearn.model_selection import KFold
-from sklearn.model_selection import cross_val_score
 
 ## bayesian optimization and modeling
 from hyperopt import fmin, tpe, Trials, STATUS_OK
@@ -20,7 +19,7 @@ from nestedhyperline.regressor_select import reg_select
 def ncv_optimizer(
 
     ## main func args
-    data, y, loss, k_outer, k_inner, n_evals, 
+    data, y, loss, k_outer, k_inner, n_evals,
     random_state, standardize, verbose,
 
     ## pred func args
@@ -92,7 +91,7 @@ def ncv_optimizer(
 
     ## store feature names
     column_names = data.columns
-    
+
     ## standardize explanatory features x
     if standardize == True:
         data = StandardScaler().fit_transform(data)
@@ -192,7 +191,7 @@ def ncv_optimizer(
 
             ## return average cross-valid loss
             return {
-                'loss': error_mean, 
+                'loss': error_mean,
                 'coef': coef,
                 'status': STATUS_OK
             }
