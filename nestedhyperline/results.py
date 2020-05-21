@@ -43,7 +43,7 @@ class RegressResults():
 
         ## results 
         return error_mean
-    
+
     ## plot mean error
     def plot_error_mean(self,
 
