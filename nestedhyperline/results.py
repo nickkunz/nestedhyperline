@@ -1,8 +1,6 @@
 ## load libraries
 import numpy as np
 import matplotlib.pylab as plt
-import matplotlib.ticker as tkr
-import matplotlib.cm as cm
 import seaborn as sns
 
 ## internal
@@ -41,7 +39,7 @@ class RegressResults():
             ), ndigits = ndigits
         )
 
-        ## results 
+        ## results
         return error_mean
 
     ## plot mean error
@@ -179,12 +177,12 @@ class RegressResults():
 
         ## y axis
         ax.set_ylabel(
-            ylabel = 'Log(λ)', 
+            ylabel = 'Log(λ)',
             fontsize = ax_fnt_sze
         )
 
         ax.set_ylim(
-            bottom = plt_data['lamb_min'] - (plt_data['lamb_min'] * 0.33), 
+            bottom = plt_data['lamb_min'] - (plt_data['lamb_min'] * 0.33),
             top = plt_data['lamb_max'] + (plt_data['lamb_max'] * 0.33)
         )
 
@@ -194,12 +192,12 @@ class RegressResults():
 
         ## x axis
         ax.set_xlabel(
-            xlabel = 'Number of Evaluations', 
+            xlabel = 'Number of Evaluations',
             fontsize = ax_fnt_sze
         )
 
         ax.set_xlim(
-            left = -(self.n_evals * 0.010), 
+            left = -(self.n_evals * 0.010),
             right = self.n_evals + (self.n_evals * 0.010)
         )
 
@@ -230,7 +228,7 @@ class RegressResults():
 
         ## legend
         ax.legend(
-            handles = plt_data['leg_lines'], 
+            handles = plt_data['leg_lines'],
             labels = plt_data['leg_labels'],
             loc = 'lower right',
             fontsize = 'small'
@@ -279,23 +277,23 @@ class RegressResults():
 
         ## y axis
         ax.set_ylabel(
-            ylabel = 'α', 
+            ylabel = 'α',
             fontsize = ax_fnt_sze
         )
 
         ax.set_ylim(
-            bottom = plt_data['alpha_min'] - 0.02, 
+            bottom = plt_data['alpha_min'] - 0.02,
             top = plt_data['alpha_max'] + 0.02,
         )
 
         ## x axis
         ax.set_xlabel(
-            xlabel = 'Number of Evaluations', 
+            xlabel = 'Number of Evaluations',
             fontsize = ax_fnt_sze
         )
 
         ax.set_xlim(
-            left = -(self.n_evals * 0.010), 
+            left = -(self.n_evals * 0.010),
             right = self.n_evals + (self.n_evals * 0.010)
         )
 
@@ -326,7 +324,7 @@ class RegressResults():
 
         ## legend
         ax.legend(
-            handles = plt_data['leg_lines'], 
+            handles = plt_data['leg_lines'],
             labels = plt_data['leg_labels'],
             loc = 'lower right',
             fontsize = 'small'
@@ -522,7 +520,7 @@ class RegressResults():
         )
 
         ax.set_xlim(
-            left = 0, 
+            left = 0,
             right = bar_num[-1] + 1
         )
 
@@ -553,7 +551,7 @@ class RegressResults():
                 x = (bar_num + bar_width) + (bar_width * i),
                 height = list(self.coef_list[i]),
                 width = bar_width,
-                facecolor = plt_data['colors'][i], 
+                facecolor = plt_data['colors'][i],
                 edgecolor = plt_data['colors'][i],
                 linewidth = ln_wdt,
             )
